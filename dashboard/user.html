@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Dashboard – ToolShare</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <link rel="stylesheet" href="../assets/css/dashboard.css"/>
+</head>
+<body>
+
+<!-- ── Top Navbar ── -->
+<header>
+  <nav class="navbar" aria-label="Dashboard navigation">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="../index.html">
+        <div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div>
+        <div><div class="navbar__name">ToolShare</div><div class="navbar__tagline">Member Dashboard</div></div>
+      </a>
+      <div class="nav-ctrls">
+        <button class="icon-btn" id="mobileSidebarToggle" aria-label="Toggle sidebar" style="display:none">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" title="Toggle RTL" aria-label="Toggle RTL">
+          <i class="fa-solid fa-right-left"></i>
+        </button>
+        <div style="position:relative">
+          <button class="icon-btn" aria-label="Notifications" id="notifBtn">
+            <i class="fa-solid fa-bell"></i>
+            <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--color-accent)"></span>
+          </button>
+        </div>
+        <a href="../index.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i>Back to Site</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ── Dashboard Layout ── -->
+<div class="dash-layout">
+  <!-- ── Sidebar ── -->
+  <aside class="dash-sidebar" id="dashSidebar" aria-label="Member navigation">
+    <div class="dash-sidebar-brand">
+      <img class="user-avatar" src="https://i.pravatar.cc/48?img=12" alt="Jane Smith's avatar"/>
+      <div class="user-name">Jane Smith</div>
+      <span class="user-badge"><i class="fa-solid fa-star"></i> Standard Member</span>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-top:var(--sp-2)">MBR-2024-00842</div>
+    </div>
+
+    <div class="dash-nav-section"><span class="dash-nav-section-label">Main</span></div>
+    <a href="#overview" class="dash-nav-item active" data-section="overview"><i class="fa-solid fa-gauge"></i> Overview</a>
+    <a href="#reservations" class="dash-nav-item" data-section="reservations"><i class="fa-solid fa-toolbox"></i> My Reservations <span class="dash-nav-badge">2</span></a>
+    <a href="#workshops" class="dash-nav-item" data-section="workshops"><i class="fa-solid fa-calendar-days"></i> My Workshops</a>
+    <a href="#dues" class="dash-nav-item" data-section="dues"><i class="fa-solid fa-credit-card"></i> Membership &amp; Dues</a>
+    <a href="#history" class="dash-nav-item" data-section="history"><i class="fa-solid fa-clock-rotate-left"></i> Borrow History</a>
+
+    <div class="dash-nav-section" style="margin-top:var(--sp-2)"><span class="dash-nav-section-label">Account</span></div>
+    <a href="#profile" class="dash-nav-item" data-section="profile"><i class="fa-solid fa-user-pen"></i> Profile Settings</a>
+    <a href="#messages" class="dash-nav-item" data-section="messages"><i class="fa-solid fa-message"></i> Messages <span class="dash-nav-badge" style="background:#0277BD">1</span></a>
+
+    <div class="dash-nav-logout">
+      <button class="dash-nav-item" onclick="alert('Logging out…')"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main id="main-content" class="dash-main">
+    <!-- ── Overview Section ── -->
+    <section id="section-overview" aria-labelledby="overview-heading">
+      <div class="dash-top">
+        <div>
+          <div class="dash-top-title" id="overview-heading">Good morning, Jane! 👋</div>
+          <div style="color:var(--color-text-muted);font-size:.875rem">Wednesday, March 25, 2025</div>
+        </div>
+        <a href="../pages/catalog.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-plus"></i>New Reservation
+        </a>
+      </div>
+      <div class="dash-inner">
+        <!-- Stat Cards -->
+        <div class="dash-stats" role="list">
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon orange"><i class="fa-solid fa-toolbox"></i></div>
+            <div class="dash-stat-value">2</div>
+            <div class="dash-stat-label">Active Loans</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-circle-check"></i> Both on time</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="dash-stat-value">3</div>
+            <div class="dash-stat-label">Workshops Attended</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> This year</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon blue"><i class="fa-solid fa-id-card"></i></div>
+            <div class="dash-stat-value">248</div>
+            <div class="dash-stat-label">Days Until Renewal</div>
+            <div class="dash-stat-change"><i class="fa-solid fa-calendar"></i> Nov 14, 2025</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon purple"><i class="fa-solid fa-star"></i></div>
+            <div class="dash-stat-value">18</div>
+            <div class="dash-stat-label">Total Borrows</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> +3 this month</div>
+          </div>
+        </div>
+
+        <!-- Active Loans + Quick Actions grid -->
+        <div class="grid grid-2" style="gap:var(--sp-6)">
+          <div>
+            <div class="dash-section-hd">
+              <h3>Active Reservations</h3>
+              <a href="#reservations" class="btn btn-ghost btn-sm" data-section-link="reservations">View All</a>
+            </div>
+            <div class="res-row">
+              <div class="res-icon"><i class="fa-solid fa-drill"></i></div>
+              <div class="res-info">
+                <div class="res-name">DeWalt 20V Cordless Drill</div>
+                <div class="res-dates"><i class="fa-solid fa-calendar-days"></i> Mar 22 – Mar 29 · <span style="color:var(--color-warning)">4 days left</span></div>
+              </div>
+              <div class="res-actions">
+                <button class="btn btn-ghost btn-sm" title="Extend"><i class="fa-solid fa-calendar-plus"></i></button>
+                <span class="card__badge badge-available">Active</span>
+              </div>
+            </div>
+            <div class="res-row">
+              <div class="res-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <div class="res-info">
+                <div class="res-name">Makita Circular Saw</div>
+                <div class="res-dates"><i class="fa-solid fa-calendar-days"></i> Mar 24 – Apr 7 · <span style="color:var(--color-success)">13 days left</span></div>
+              </div>
+              <div class="res-actions">
+                <button class="btn btn-ghost btn-sm" title="Extend"><i class="fa-solid fa-calendar-plus"></i></button>
+                <span class="card__badge badge-available">Active</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="dash-section-hd"><h3>Upcoming Workshops</h3></div>
+            <div class="res-row">
+              <div class="res-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="res-info">
+                <div class="res-name">Home Plumbing Basics</div>
+                <div class="res-dates"><i class="fa-solid fa-calendar"></i> Apr 12 · 2:00pm · Workshop Bay B</div>
+              </div>
+              <span class="card__badge badge-upcoming">Booked</span>
+            </div>
+            <div class="res-row">
+              <div class="res-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="res-info">
+                <div class="res-name">MIG Welding for Beginners</div>
+                <div class="res-dates"><i class="fa-solid fa-calendar"></i> Apr 26 · 9:00am · Welding Bay</div>
+              </div>
+              <span class="card__badge badge-upcoming">Booked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Reservations Section ── -->
+    <section id="section-reservations" style="display:none" aria-labelledby="res-heading">
+      <div class="dash-top">
+        <div class="dash-top-title" id="res-heading">My Reservations</div>
+        <a href="../pages/catalog.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i>Browse Catalog</a>
+      </div>
+      <div class="dash-inner">
+        <div class="filter-bar" style="margin-bottom:var(--sp-6)">
+          <div class="filter-chips" role="group" aria-label="Filter reservations">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="active">Active</button>
+            <button class="chip" data-filter="upcoming">Upcoming</button>
+            <button class="chip" data-filter="returned">Returned</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tool</th><th>Cat. #</th><th>Picked Up</th><th>Due Back</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>DeWalt 20V Cordless Drill</strong></td>
+                <td>PTL-042</td><td>Mar 22, 2025</td><td>Mar 29, 2025</td>
+                <td><span class="card__badge badge-available">Active</span></td>
+                <td><div style="display:flex;gap:var(--sp-2)">
+                  <button class="btn btn-ghost btn-sm" title="Extend loan"><i class="fa-solid fa-calendar-plus"></i> Extend</button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><strong>Makita Circular Saw</strong></td>
+                <td>PTL-017</td><td>Mar 24, 2025</td><td>Apr 7, 2025</td>
+                <td><span class="card__badge badge-available">Active</span></td>
+                <td><button class="btn btn-ghost btn-sm" title="Extend loan"><i class="fa-solid fa-calendar-plus"></i> Extend</button></td>
+              </tr>
+              <tr>
+                <td><strong>Belt Sander 3×21"</strong></td>
+                <td>WW-031</td><td>Mar 1, 2025</td><td>Mar 15, 2025</td>
+                <td><span class="card__badge badge-unavailable">Returned</span></td>
+                <td><button class="btn btn-ghost btn-sm"><i class="fa-solid fa-rotate-right"></i> Re-borrow</button></td>
+              </tr>
+              <tr>
+                <td><strong>Digital Multimeter Pro</strong></td>
+                <td>ELC-005</td><td>Feb 10, 2025</td><td>Feb 24, 2025</td>
+                <td><span class="card__badge badge-unavailable">Returned</span></td>
+                <td><button class="btn btn-ghost btn-sm"><i class="fa-solid fa-rotate-right"></i> Re-borrow</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Dues Section ── -->
+    <section id="section-dues" style="display:none" aria-labelledby="dues-heading">
+      <div class="dash-top">
+        <div class="dash-top-title" id="dues-heading">Membership &amp; Dues</div>
+      </div>
+      <div class="dash-inner">
+        <div class="grid grid-2" style="gap:var(--sp-6);align-items:start">
+          <!-- Current Membership -->
+          <div>
+            <div class="dash-card dues-card" style="margin-bottom:var(--sp-5)">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-4)">
+                <div>
+                  <div style="font-size:.8125rem;font-weight:700;color:var(--color-accent);text-transform:uppercase;margin-bottom:var(--sp-1)">Standard Membership</div>
+                  <div style="font-size:1.75rem;font-weight:800">$65 <span style="font-size:1rem;font-weight:400;color:var(--color-text-muted)">/year</span></div>
+                </div>
+                <span class="card__badge badge-available" style="font-size:.8rem">Active</span>
+              </div>
+              <div style="font-size:.875rem;color:var(--color-text-muted);margin-bottom:var(--sp-3)">
+                <i class="fa-solid fa-calendar-check"></i> Member since: <strong style="color:var(--color-text)">Nov 14, 2022</strong><br>
+                <i class="fa-solid fa-calendar-xmark"></i> Renewal due: <strong style="color:var(--color-text)">Nov 14, 2025</strong>
+              </div>
+              <div class="dues-progress" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" aria-label="32% of membership year elapsed">
+                <div class="dues-fill" style="width:32%"></div>
+              </div>
+              <div style="font-size:.8125rem;color:var(--color-text-muted)">32% of membership year used · 248 days remaining</div>
+              <a href="membership.html" class="btn btn-outline btn-sm" style="margin-top:var(--sp-4)"><i class="fa-solid fa-arrow-up"></i>Upgrade Plan</a>
+            </div>
+            <!-- Features included -->
+            <div class="dash-card">
+              <h4 style="margin-bottom:var(--sp-4)">Your Plan Includes</h4>
+              <ul style="display:flex;flex-direction:column;gap:var(--sp-3)">
+                <li style="display:flex;align-items:center;gap:var(--sp-3);font-size:.9375rem"><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Borrow up to 4 tools at once</li>
+                <li style="display:flex;align-items:center;gap:var(--sp-3);font-size:.9375rem"><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> 14-day borrowing periods</li>
+                <li style="display:flex;align-items:center;gap:var(--sp-3);font-size:.9375rem"><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Unlimited workshop attendance</li>
+                <li style="display:flex;align-items:center;gap:var(--sp-3);font-size:.9375rem"><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Workshop workspace access</li>
+                <li style="display:flex;align-items:center;gap:var(--sp-3);font-size:.9375rem"><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Priority reservations</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Payment / Renewal -->
+          <div>
+            <div class="dash-card">
+              <h4 style="margin-bottom:var(--sp-5)"><i class="fa-solid fa-credit-card" style="color:var(--color-accent)"></i> Renew Membership</h4>
+              <div style="background:var(--color-bg-alt);border-radius:var(--radius-md);padding:var(--sp-4);margin-bottom:var(--sp-5)">
+                <div style="display:flex;justify-content:space-between;margin-bottom:var(--sp-2)"><span>Standard Plan (1 year)</span><strong>$65.00</strong></div>
+                <div style="display:flex;justify-content:space-between;font-size:.875rem;color:var(--color-text-muted)"><span>Renewal date</span><span>Nov 14, 2025</span></div>
+              </div>
+              <!-- Stripe placeholder -->
+              <div style="border:2px dashed var(--color-border);border-radius:var(--radius-md);padding:var(--sp-6);text-align:center;color:var(--color-text-muted);margin-bottom:var(--sp-5)">
+                <i class="fa-brands fa-stripe" style="font-size:2.5rem;color:#635BFF;display:block;margin-bottom:var(--sp-2)"></i>
+                <!-- TODO: Integrate Stripe.js Elements here -->
+                Stripe payment form
+              </div>
+              <button class="btn btn-primary w-full btn-lg" disabled>
+                <i class="fa-solid fa-lock"></i>Pay $65 – Renew Now
+              </button>
+              <p style="font-size:.8125rem;color:var(--color-text-muted);text-align:center;margin-top:var(--sp-3)">Or pay in person with cash/check. Questions? <a href="../pages/contact.html">Contact us</a>.</p>
+            </div>
+            <div class="dash-card" style="margin-top:var(--sp-5)">
+              <h4 style="margin-bottom:var(--sp-4)">Payment History</h4>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr><td>Nov 14, 2024</td><td>$65.00</td><td><span class="card__badge badge-available">Paid</span></td></tr>
+                    <tr><td>Nov 14, 2023</td><td>$65.00</td><td><span class="card__badge badge-available">Paid</span></td></tr>
+                    <tr><td>Nov 14, 2022</td><td>$65.00</td><td><span class="card__badge badge-available">Paid</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Profile Section ── -->
+    <section id="section-profile" style="display:none" aria-labelledby="profile-heading">
+      <div class="dash-top">
+        <div class="dash-top-title" id="profile-heading">Profile Settings</div>
+        <button class="btn btn-primary btn-sm" id="saveProfileBtn"><i class="fa-solid fa-floppy-disk"></i>Save Changes</button>
+      </div>
+      <div class="dash-inner">
+        <div class="grid grid-2" style="gap:var(--sp-6);max-width:800px">
+          <div class="dash-card" style="padding:var(--sp-6)">
+            <h4 style="margin-bottom:var(--sp-5)">Personal Info</h4>
+            <form data-validate id="profileForm" aria-label="Profile settings form">
+              <div class="form-group">
+                <label for="pfFname" class="form-label">First Name <span class="required">*</span></label>
+                <input type="text" id="pfFname" name="fname" class="form-control" value="Jane" data-rules="required"/>
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="pfLname" class="form-label">Last Name <span class="required">*</span></label>
+                <input type="text" id="pfLname" name="lname" class="form-control" value="Smith" data-rules="required"/>
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="pfEmail" class="form-label">Email <span class="required">*</span></label>
+                <input type="email" id="pfEmail" name="email" class="form-control" value="jane@example.com" data-rules="required|email"/>
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="pfPhone" class="form-label">Phone</label>
+                <input type="tel" id="pfPhone" name="phone" class="form-control" value="+1 (555) 234-5678" data-rules="phone"/>
+                <span class="form-error" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="pfAddress" class="form-label">Address</label>
+                <textarea id="pfAddress" name="address" class="form-control" rows="2">456 Oak Ave, Anytown, ST 00000</textarea>
+              </div>
+            </form>
+          </div>
+          <div>
+            <div class="dash-card" style="padding:var(--sp-6);margin-bottom:var(--sp-5)">
+              <h4 style="margin-bottom:var(--sp-5)">Change Password</h4>
+              <div class="form-group">
+                <label for="pfCurPwd" class="form-label">Current Password</label>
+                <input type="password" id="pfCurPwd" class="form-control" placeholder="••••••••"/>
+              </div>
+              <div class="form-group">
+                <label for="pfNewPwd" class="form-label">New Password</label>
+                <input type="password" id="pfNewPwd" class="form-control" placeholder="••••••••" data-rules="minLength:8"/>
+                <span class="form-error" role="alert"></span>
+              </div>
+              <button class="btn btn-outline w-full"><i class="fa-solid fa-key"></i>Update Password</button>
+            </div>
+            <div class="dash-card" style="padding:var(--sp-6)">
+              <h4 style="margin-bottom:var(--sp-4)">Notifications</h4>
+              <div style="display:flex;flex-direction:column;gap:var(--sp-3)">
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer">
+                  <span>Reservation reminders</span>
+                  <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--color-accent)"/>
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer">
+                  <span>Workshop announcements</span>
+                  <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--color-accent)"/>
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer">
+                  <span>Membership renewal alerts</span>
+                  <input type="checkbox" checked style="width:18px;height:18px;accent-color:var(--color-accent)"/>
+                </label>
+                <label style="display:flex;justify-content:space-between;align-items:center;cursor:pointer">
+                  <span>Newsletter</span>
+                  <input type="checkbox" style="width:18px;height:18px;accent-color:var(--color-accent)"/>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── History Section ── -->
+    <section id="section-history" style="display:none" aria-labelledby="hist-heading">
+      <div class="dash-top"><div class="dash-top-title" id="hist-heading">Borrow History</div></div>
+      <div class="dash-inner">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Cat. #</th><th>Borrowed</th><th>Returned</th><th>Duration</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>DeWalt 20V Cordless Drill</strong></td><td>PTL-042</td><td>Mar 22, 2025</td><td>—</td><td>Active</td><td><span class="card__badge badge-available">Active</span></td></tr>
+              <tr><td><strong>Makita Circular Saw</strong></td><td>PTL-017</td><td>Mar 24, 2025</td><td>—</td><td>Active</td><td><span class="card__badge badge-available">Active</span></td></tr>
+              <tr><td><strong>Belt Sander 3×21"</strong></td><td>WW-031</td><td>Mar 1, 2025</td><td>Mar 14, 2025</td><td>13 days</td><td><span class="card__badge badge-unavailable">Returned</span></td></tr>
+              <tr><td><strong>Digital Multimeter Pro</strong></td><td>ELC-005</td><td>Feb 10, 2025</td><td>Feb 22, 2025</td><td>12 days</td><td><span class="card__badge badge-unavailable">Returned</span></td></tr>
+              <tr><td><strong>Pressure Washer 3200 PSI</strong></td><td>OUT-008</td><td>Jan 5, 2025</td><td>Jan 12, 2025</td><td>7 days</td><td><span class="card__badge badge-unavailable">Returned</span></td></tr>
+              <tr><td><strong>Pipe Wrench Set</strong></td><td>PLM-012</td><td>Dec 18, 2024</td><td>Dec 25, 2024</td><td>7 days</td><td><span class="card__badge badge-unavailable">Returned</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Workshops Section ── -->
+    <section id="section-workshops" style="display:none" aria-labelledby="ws-heading">
+      <div class="dash-top">
+        <div class="dash-top-title" id="ws-heading">My Workshops</div>
+        <a href="../pages/workshops.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i>Browse Workshops</a>
+      </div>
+      <div class="dash-inner">
+        <h4 style="margin-bottom:var(--sp-4)">Upcoming</h4>
+        <div class="res-row"><div class="res-icon"><i class="fa-solid fa-wrench"></i></div><div class="res-info"><div class="res-name">Home Plumbing Basics</div><div class="res-dates">Apr 12 · 2:00pm · Workshop Bay B · Instructor: Maria S.</div></div><span class="card__badge badge-upcoming">Confirmed</span></div>
+        <div class="res-row"><div class="res-icon"><i class="fa-solid fa-fire-flame-curved"></i></div><div class="res-info"><div class="res-name">MIG Welding for Beginners</div><div class="res-dates">Apr 26 · 9:00am · Welding Bay · Instructor: Carlos M.</div></div><span class="card__badge badge-upcoming">Confirmed</span></div>
+        <div class="divider"></div>
+        <h4 style="margin-bottom:var(--sp-4)">Past Workshops</h4>
+        <div class="res-row"><div class="res-icon"><i class="fa-solid fa-hammer"></i></div><div class="res-info"><div class="res-name">Intro to Woodworking</div><div class="res-dates">Jan 18, 2025 · 10:00am · Instructor: James K.</div></div><span class="card__badge badge-unavailable">Attended</span></div>
+        <div class="res-row"><div class="res-icon"><i class="fa-solid fa-bolt"></i></div><div class="res-info"><div class="res-name">Basic Home Electrical</div><div class="res-dates">Nov 16, 2024 · 10:00am · Instructor: D. Reeves</div></div><span class="card__badge badge-unavailable">Attended</span></div>
+        <div class="res-row"><div class="res-icon"><i class="fa-solid fa-paintbrush"></i></div><div class="res-info"><div class="res-name">Interior Painting Techniques</div><div class="res-dates">Sep 7, 2024 · 1:00pm · Instructor: Priya T.</div></div><span class="card__badge badge-unavailable">Attended</span></div>
+      </div>
+    </section>
+
+    <!-- ── Messages Section ── -->
+    <section id="section-messages" style="display:none" aria-labelledby="msg-heading">
+      <div class="dash-top"><div class="dash-top-title" id="msg-heading">Messages</div></div>
+      <div class="dash-inner">
+        <div class="dash-card" style="padding:var(--sp-6)">
+          <div class="res-row" style="border:1px solid var(--color-accent);border-radius:var(--radius-md)">
+            <div class="res-icon" style="background:rgba(2,119,189,.1);color:#0277BD"><i class="fa-solid fa-info"></i></div>
+            <div class="res-info">
+              <div class="res-name">Reminder: DeWalt Drill Due Mar 29</div>
+              <div class="res-dates">From ToolShare Staff · Mar 25, 2025</div>
+              <div style="font-size:.9rem;color:var(--color-text-muted);margin-top:var(--sp-2)">Just a friendly reminder that your DeWalt 20V Drill (#PTL-042) is due back on Mar 29. Need more time? Extend your loan via the Reservations tab.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast-container" aria-live="polite"></div>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

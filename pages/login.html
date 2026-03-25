@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In – ToolShare Community Workshop</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="description" content="Sign in to your ToolShare account to manage reservations, browse tools, and access member workshops."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <style>
+    /* ── Auth Layout ── */
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .auth-wrap {
+      flex: 1; display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Left brand panel ── */
+    .auth-panel {
+      background: linear-gradient(145deg, #1a1a1a 0%, #2e2e2e 60%, #1a1a1a 100%);
+      display: flex; flex-direction: column;
+      padding: var(--sp-10) var(--sp-12);
+      position: relative; overflow: hidden;
+    }
+    .auth-panel-inner {
+      width: 100%; max-width: 420px; margin: 0 auto;
+      flex: 1; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .auth-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,111,0,.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .auth-panel-brand { position: relative; z-index: 1; }
+    .auth-panel-brand a { display: flex; align-items: center; gap: var(--sp-3); text-decoration: none; }
+    .auth-panel-brand .navbar__logo {
+      width: 48px; height: 48px; background: var(--color-accent);
+      border-radius: var(--radius-md); display: grid; place-items: center;
+      color: #fff; font-size: 1.25rem; flex-shrink: 0;
+    }
+    .auth-panel-brand .navbar__name  { color: #fff; font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; line-height: 1; }
+    .auth-panel-brand .navbar__tagline { color: rgba(255,255,255,.5); font-size: .8125rem; }
+
+    .auth-panel-content { position: relative; z-index: 1; }
+    .auth-panel-content h2 {
+      color: #fff; font-size: 2rem; font-weight: 800;
+      margin-bottom: var(--sp-4); line-height: 1.2;
+    }
+    .auth-panel-content h2 span { color: var(--color-accent); }
+    .auth-panel-content p { color: rgba(255,255,255,.6); font-size: 1rem; margin-bottom: var(--sp-8); }
+
+    .auth-panel-stats { display: flex; gap: var(--sp-8); }
+    .auth-stat { color: #fff; }
+    .auth-stat strong { display: block; font-size: 1.75rem; font-weight: 800; color: var(--color-accent); }
+    .auth-stat span { font-size: .8125rem; color: rgba(255,255,255,.5); }
+
+    .auth-testimonial {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .auth-testimonial blockquote { color: rgba(255,255,255,.8); font-size: .9375rem; font-style: italic; margin-bottom: var(--sp-4); }
+    .auth-testimonial-author { display: flex; align-items: center; gap: var(--sp-3); }
+    .auth-testimonial-author img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--color-accent); }
+    .auth-testimonial-author strong { color: #fff; font-size: .9rem; display: block; }
+    .auth-testimonial-author span { color: rgba(255,255,255,.45); font-size: .8125rem; }
+
+    /* ── Right form panel ── */
+    .auth-form-wrap {
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: var(--sp-10) var(--sp-12);
+      background: var(--color-bg);
+    }
+    .auth-form-inner { width: 100%; max-width: 420px; }
+
+    .auth-form-header { margin-bottom: var(--sp-8); }
+    .auth-form-header h1 { font-size: 1.875rem; margin-bottom: var(--sp-2); }
+    .auth-form-header p  { color: var(--color-text-muted); }
+
+    /* Top bar for mobile - links back to site */
+    .auth-topbar {
+      display: none; padding: var(--sp-4) var(--sp-5);
+      background: var(--color-surface); border-bottom: 1px solid var(--color-border);
+      align-items: center; justify-content: space-between;
+    }
+
+    /* Social divider */
+    .auth-divider {
+      display: flex; align-items: center; gap: var(--sp-4);
+      margin: var(--sp-6) 0; color: var(--color-text-muted); font-size: .8125rem;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--color-border);
+    }
+
+    /* Social buttons */
+    .social-auth { display: flex; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+    .social-auth-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: var(--sp-2);
+      padding: var(--sp-3); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); background: var(--color-surface);
+      color: var(--color-text); font-size: .9rem; font-weight: 500;
+      cursor: pointer; transition: all var(--transition); text-decoration: none;
+    }
+    .social-auth-btn:hover { background: var(--color-bg-alt); border-color: var(--color-accent); }
+
+    /* Password field wrapper */
+    .input-icon-wrap { position: relative; }
+    .input-icon-wrap .form-control { padding-right: 44px; }
+    .input-icon-wrap .toggle-pwd {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      color: var(--color-text-muted); cursor: pointer; background: none; border: none;
+      padding: 4px; display: grid; place-items: center;
+    }
+    .input-icon-wrap .toggle-pwd:hover { color: var(--color-accent); }
+
+    /* Remember me row */
+    .form-row-split { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; }
+    .checkbox-label { display: flex; align-items: center; gap: var(--sp-2); font-size: .9rem; cursor: pointer; }
+    .checkbox-label input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--color-accent); cursor: pointer; }
+
+    /* Auth footer note */
+    .auth-footer-note { text-align: center; font-size: .9rem; color: var(--color-text-muted); margin-top: var(--sp-6); }
+    .auth-footer-note a { color: var(--color-accent); font-weight: 600; text-decoration: none; }
+    .auth-footer-note a:hover { text-decoration: underline; }
+
+    /* Theme toggle in corner */
+    .auth-corner-ctrls {
+      position: fixed; top: var(--sp-4); right: var(--sp-4);
+      display: flex; gap: var(--sp-2); z-index: 100;
+    }
+
+    /* Responsive */
+    @media(max-width: 899px) {
+      .auth-wrap { grid-template-columns: 1fr; }
+      .auth-panel { display: none; }
+      .auth-topbar { display: flex; }
+      .auth-form-wrap { padding: var(--sp-8) var(--sp-6); }
+    }
+    @media(max-width: 479px) {
+      .auth-form-wrap { padding: var(--sp-6) var(--sp-4); }
+      .social-auth { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Theme / RTL controls (floating) -->
+<div class="auth-corner-ctrls" role="toolbar" aria-label="Display controls">
+  <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+    <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+    <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+  </button>
+  <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL layout">
+    <i class="fa-solid fa-right-left" aria-hidden="true"></i>
+  </button>
+</div>
+
+<!-- Mobile top bar -->
+<div class="auth-topbar" role="banner">
+  <a href="../index.html" style="display:flex;align-items:center;gap:var(--sp-2);font-weight:700;color:var(--color-text);text-decoration:none">
+    <div style="width:32px;height:32px;background:var(--color-accent);border-radius:var(--radius-sm);display:grid;place-items:center;color:#fff;font-size:.875rem">
+      <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+    </div>
+    ToolShare
+  </a>
+  <!-- <a href="../index.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i>Back to Site</a> -->
+</div>
+
+<div class="auth-wrap">
+  <!-- ── Left Brand Panel ── -->
+  <aside class="auth-panel" aria-label="ToolShare branding">
+    <div class="auth-panel-inner">
+      <div class="auth-panel-brand">
+      <a href="../index.html" aria-label="ToolShare Home">
+        <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+        <div>
+          <div class="navbar__name">ToolShare</div>
+          <div class="navbar__tagline">Community Workshop</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="auth-panel-content">
+      <h2>Your community.<br><span>Your tools.</span><br>Your skills.</h2>
+      <p>Join 520+ neighbors borrowing tools, attending workshops, and building things together.</p>
+      <div class="auth-panel-stats">
+        <div class="auth-stat"><strong>850+</strong><span>Tools to borrow</span></div>
+        <div class="auth-stat"><strong>48</strong><span>Workshops/year</span></div>
+        <div class="auth-stat"><strong>$65</strong><span>Membership/year</span></div>
+      </div>
+    </div>
+
+    <div class="auth-testimonial">
+      <blockquote>"Renovated my entire bathroom using ToolShare tools. Saved over $800 in equipment rental. The staff is incredibly helpful!"</blockquote>
+      <div class="auth-testimonial-author">
+        <img src="https://i.pravatar.cc/40?img=12" alt="Portrait of Sarah M."/>
+        <div>
+          <strong>Sarah M.</strong>
+          <span>Member since 2022</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </aside>
+
+  <!-- ── Right Form Panel ── -->
+  <main class="auth-form-wrap" id="main-content">
+    <div class="auth-form-inner">
+      <div class="auth-form-header">
+        <h1>Welcome back</h1>
+        <p>Sign in to manage your reservations and workshops.</p>
+      </div>
+
+      <!-- Social Login -->
+      <div class="social-auth" role="group" aria-label="Social sign-in options">
+        <!-- TODO: Integrate Google OAuth / Apple Sign-In -->
+        <button class="social-auth-btn" type="button" aria-label="Continue with Google">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.25-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/>
+            <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
+            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+          </svg>
+          Google
+        </button>
+        <button class="social-auth-btn" type="button" aria-label="Continue with Apple">
+          <i class="fa-brands fa-apple" style="font-size:1.1rem" aria-hidden="true"></i>
+          Apple
+        </button>
+      </div>
+
+      <div class="auth-divider" role="separator"><span>or sign in with email</span></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" data-validate action="#" method="POST" aria-label="Email sign-in form" novalidate>
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">
+            Email address <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            type="email" id="loginEmail" name="email" class="form-control"
+            placeholder="jane@example.com" data-rules="required|email"
+            aria-required="true" autocomplete="email" autofocus/>
+          <span class="form-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row-split" style="margin-bottom:var(--sp-2)">
+            <label for="loginPassword" class="form-label" style="margin:0">
+              Password <span class="required" aria-hidden="true">*</span>
+            </label>
+            <a href="#" style="font-size:.875rem;color:var(--color-accent);font-weight:600;text-decoration:none" id="forgotLink">Forgot password?</a>
+          </div>
+          <div class="input-icon-wrap">
+            <input
+              type="password" id="loginPassword" name="password" class="form-control"
+              placeholder="••••••••" data-rules="required|minLength:8"
+              aria-required="true" autocomplete="current-password"/>
+            <button type="button" class="toggle-pwd" aria-label="Show or hide password" id="toggleLoginPwd">
+              <i class="fa-solid fa-eye" aria-hidden="true" id="loginEyeIcon"></i>
+            </button>
+          </div>
+          <span class="form-error" role="alert"></span>
+        </div>
+
+        <div class="form-row-split" style="margin-bottom:var(--sp-6)">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" name="remember"/>
+            Remember me for 30 days
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full btn-lg" id="loginSubmit">
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Sign In
+        </button>
+      </form>
+
+      <p class="auth-footer-note">
+        Don't have an account? <a href="register.html">Create one free</a>
+      </p>
+      <p class="auth-footer-note" style="margin-top:var(--sp-3)">
+        <a href="../index.html" style="color:var(--color-text-muted);font-weight:400"><i class="fa-solid fa-arrow-left" style="font-size:.8em"></i> Back to ToolShare</a>
+      </p>
+    </div>
+  </main>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal-overlay" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="forgotTitle" aria-hidden="true">
+  <div class="modal" style="max-width:420px">
+    <div class="modal__header">
+      <h3 id="forgotTitle"><i class="fa-solid fa-key"></i> Reset Password</h3>
+      <button class="modal__close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p style="color:var(--color-text-muted);margin-bottom:var(--sp-5)">Enter your email and we'll send you a link to reset your password.</p>
+    <form data-validate aria-label="Password reset form">
+      <div class="form-group">
+        <label for="forgotEmail" class="form-label">Email address <span class="required">*</span></label>
+        <input type="email" id="forgotEmail" name="email" class="form-control" placeholder="jane@example.com" data-rules="required|email" aria-required="true"/>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-paper-plane"></i>Send Reset Link</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast-container" aria-live="polite"></div>
+<script src="../assets/js/main.js"></script>
+<script>
+  // Show/hide password
+  document.getElementById('toggleLoginPwd')?.addEventListener('click', function() {
+    const pwd = document.getElementById('loginPassword');
+    const icon = document.getElementById('loginEyeIcon');
+    const isHidden = pwd.type === 'password';
+    pwd.type = isHidden ? 'text' : 'password';
+    icon.className = isHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+    this.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+  });
+
+  // Forgot password link → open modal
+  document.getElementById('forgotLink')?.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('forgotModal')?.classList.add('open');
+    document.getElementById('forgotModal')?.removeAttribute('aria-hidden');
+    document.getElementById('forgotEmail')?.focus();
+  });
+
+  // Login form submit
+  document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // TODO: Replace with real auth API call (JWT / session)
+    const btn = document.getElementById('loginSubmit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in…';
+    setTimeout(() => {
+      // Simulate success → redirect to dashboard
+      window.location.href = '../dashboard/user.html';
+    }, 1200);
+  });
+
+  // Forgot form submit
+  document.querySelector('#forgotModal form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    window.Toast?.show('Reset link sent! Check your email inbox.', 'success');
+    document.getElementById('forgotModal')?.classList.remove('open');
+    document.getElementById('forgotModal')?.setAttribute('aria-hidden', 'true');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DIY Workshops – ToolShare Community Workshop</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="description" content="Join hands-on DIY workshops for all skill levels. Learn woodworking, plumbing, electrical, and more from community experts."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <style>
+    .workshops-layout{display:grid;grid-template-columns:1fr 340px;gap:var(--sp-10);align-items:start}
+    .workshop-event{
+      display:flex;gap:var(--sp-5);padding:var(--sp-6);
+      background:var(--color-surface);border:1px solid var(--color-border);
+      border-radius:var(--radius-lg);margin-bottom:var(--sp-4);
+      transition:all var(--transition);
+    }
+    .workshop-event:hover{border-color:var(--color-accent);box-shadow:var(--shadow-md)}
+    .event-date{
+      min-width:64px;height:64px;border-radius:var(--radius-lg);
+      background:var(--color-accent);display:flex;flex-direction:column;
+      align-items:center;justify-content:center;color:#fff;flex-shrink:0
+    }
+    .event-date .day{font-size:1.5rem;font-weight:800;line-height:1}
+    .event-date .month{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.9}
+    .event-body{flex:1}
+    .event-body h3{font-size:1.0625rem;margin-bottom:var(--sp-2)}
+    .event-meta{display:flex;flex-wrap:wrap;gap:var(--sp-4);font-size:.875rem;color:var(--color-text-muted);margin-bottom:var(--sp-3)}
+    .event-meta span{display:flex;align-items:center;gap:var(--sp-1)}
+    .event-actions{display:flex;gap:var(--sp-2);align-items:center;margin-top:var(--sp-3)}
+    .spots-bar{height:4px;border-radius:2px;background:var(--color-border);margin-top:var(--sp-2);overflow:hidden}
+    .spots-fill{height:100%;border-radius:2px;background:var(--color-accent)}
+    .sticky-calendar{position:sticky;top:calc(var(--nav-height)+var(--sp-4))}
+    @media(max-width:1023px){.workshops-layout{grid-template-columns:1fr}.sticky-calendar{position:static}}
+    @media(max-width:639px){.workshop-event{flex-direction:column}}
+  </style>
+</head>
+<body>
+<header role="banner">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="../index.html"><div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div><div><div class="navbar__name">ToolShare</div><div class="navbar__tagline">Community Workshop</div></div></a>
+      <ul class="nav-links" role="list">
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
+          <ul class="dropdown-menu" aria-label="Home submenu">
+            <li><a href="../index.html">Home 1</a></li>
+            <li><a href="../index2.html">Home 2</a></li>
+          </ul>
+        </li>
+        <li><a href="catalog.html">Tool Catalog</a></li>
+        <li><a href="workshops.html" class="active">Workshops</a></li><li><a href="membership.html">Membership</a></li>
+        <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-ctrls">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+        <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
+        <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a>
+        <a href="../dashboard/user.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer" role="navigation">
+    <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+    <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+    <a href="workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+    <a href="membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+    <a href="../dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+  </div>
+</header>
+
+<main id="main-content">
+  <section class="page-hero" style="--page-hero-bg:url('https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=1400&h=500&fit=crop&q=80')"
+    aria-labelledby="workshops-heading">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span aria-current="page">Workshops</span>
+      </nav>
+      <h1><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> DIY Workshops</h1>
+      <p>Hands-on learning for all skill levels. From basic repairs to advanced craft — taught by your neighbors.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Filter row -->
+      <div class="filter-bar reveal" style="margin-bottom:var(--sp-8)">
+        <div class="filter-chips" role="group" aria-label="Filter workshops">
+          <button class="chip active" data-filter="all">All Workshops</button>
+          <button class="chip" data-filter="woodwork">Woodworking</button>
+          <button class="chip" data-filter="plumbing">Plumbing</button>
+          <button class="chip" data-filter="electrical">Electrical</button>
+          <button class="chip" data-filter="garden">Gardening</button>
+          <button class="chip" data-filter="painting">Painting</button>
+          <button class="chip" data-filter="welding">Welding</button>
+        </div>
+        <select class="form-control" style="max-width:160px" aria-label="Filter by skill level">
+          <option value="">All Levels</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+
+      <div class="workshops-layout">
+        <!-- Events List -->
+        <div>
+          <h2 style="margin-bottom:var(--sp-6)" class="reveal">April 2025</h2>
+
+          <article class="workshop-event reveal" data-category="woodwork">
+            <div class="event-date" aria-label="April 5"><span class="day">05</span><span class="month">Apr</span></div>
+            <div class="event-body">
+              <h3>Intro to Woodworking</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 10:00am – 1:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> James K.</span>
+                <span><i class="fa-solid fa-location-dot"></i> Workshop Bay A</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Learn joinery basics, safe saw use, and build a simple shelf to take home. All materials provided.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">8 of 12 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:67%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — Free for members</button>
+                <span class="card__badge badge-upcoming">4 spots left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="workshop-event reveal" data-category="plumbing">
+            <div class="event-date" aria-label="April 12"><span class="day">12</span><span class="month">Apr</span></div>
+            <div class="event-body">
+              <h3>Home Plumbing Basics</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 2:00pm – 5:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> Maria S.</span>
+                <span><i class="fa-solid fa-location-dot"></i> Workshop Bay B</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Fix leaks, replace fixtures, and understand your home's water system — no experience needed.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">5 of 18 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:28%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — Free for members</button>
+                <span class="card__badge badge-available">13 spots left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="workshop-event reveal" data-category="electrical">
+            <div class="event-date" aria-label="April 19"><span class="day">19</span><span class="month">Apr</span></div>
+            <div class="event-body">
+              <h3>Basic Home Electrical</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 10:00am – 1:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> D. Reeves</span>
+                <span><i class="fa-solid fa-location-dot"></i> Workshop Bay A</span>
+                <span><i class="fa-solid fa-signal"></i> Intermediate</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Safely replace outlets, switches, and light fixtures. Know when to call a licensed electrician.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">10 of 12 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:83%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — $10 non-members</button>
+                <span class="card__badge badge-reserved">2 spots left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="workshop-event reveal" data-category="welding">
+            <div class="event-date" aria-label="April 26"><span class="day">26</span><span class="month">Apr</span></div>
+            <div class="event-body">
+              <h3>MIG Welding for Beginners</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 9:00am – 12:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> Carlos M.</span>
+                <span><i class="fa-solid fa-location-dot"></i> Welding Bay</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Hands-on introduction to MIG welding. Safety equipment and materials provided. Build a small metal project.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">3 of 8 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:38%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — Free for members</button>
+                <span class="card__badge badge-available">5 spots left</span>
+              </div>
+            </div>
+          </article>
+
+          <h2 style="margin:var(--sp-12) 0 var(--sp-6)" class="reveal">May 2025</h2>
+
+          <article class="workshop-event reveal" data-category="painting">
+            <div class="event-date" aria-label="May 3"><span class="day">03</span><span class="month">May</span></div>
+            <div class="event-body">
+              <h3>Interior Painting Techniques</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 1:00pm – 4:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> Priya T.</span>
+                <span><i class="fa-solid fa-location-dot"></i> Workshop Bay B</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Master wall prep, taping, rolling, and cutting-in techniques for professional results.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">0 of 16 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:0%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — Free for members</button>
+                <span class="card__badge badge-available">16 spots left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="workshop-event reveal" data-category="garden">
+            <div class="event-date" aria-label="May 10"><span class="day">10</span><span class="month">May</span></div>
+            <div class="event-body">
+              <h3>Raised Bed Garden Build</h3>
+              <div class="event-meta">
+                <span><i class="fa-solid fa-clock"></i> 9:00am – 12:00pm</span>
+                <span><i class="fa-solid fa-user-tie"></i> Aisha B.</span>
+                <span><i class="fa-solid fa-location-dot"></i> Outdoor Area</span>
+                <span><i class="fa-solid fa-signal"></i> Beginner</span>
+              </div>
+              <p style="font-size:.9rem;color:var(--color-text-muted)">Build your own cedar raised garden bed. Take it home! Lumber and hardware included.</p>
+              <div><span style="font-size:.8rem;color:var(--color-text-muted)">2 of 10 spots filled</span>
+                <div class="spots-bar"><div class="spots-fill" style="width:20%"></div></div>
+              </div>
+              <div class="event-actions">
+                <button class="btn btn-primary btn-sm" data-modal="bookModal">Book Spot — $25 material fee</button>
+                <span class="card__badge badge-available">8 spots left</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Mini Calendar -->
+        <aside class="sticky-calendar reveal" aria-label="Workshop calendar">
+          <div class="calendar">
+            <div class="calendar__header">
+              <button aria-label="Previous month"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+              <strong>April 2025</strong>
+              <button aria-label="Next month"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+            </div>
+            <div class="calendar__grid">
+              <div class="cal-day-name">Su</div><div class="cal-day-name">Mo</div>
+              <div class="cal-day-name">Tu</div><div class="cal-day-name">We</div>
+              <div class="cal-day-name">Th</div><div class="cal-day-name">Fr</div>
+              <div class="cal-day-name">Sa</div>
+              <div class="cal-day other-month">30</div><div class="cal-day other-month">31</div>
+              <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+              <div class="cal-day has-event" title="Intro to Woodworking">5</div>
+              <div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div>
+              <div class="cal-day has-event" title="Home Plumbing Basics">12</div>
+              <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
+              <div class="cal-day has-event today" title="Basic Home Electrical">19</div>
+              <div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
+              <div class="cal-day has-event" title="MIG Welding for Beginners">26</div>
+              <div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div>
+              <div class="cal-day other-month">1</div><div class="cal-day other-month">2</div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:var(--sp-4);padding:var(--sp-5)">
+            <h4 style="margin-bottom:var(--sp-3)"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Workshop Info</h4>
+            <ul style="font-size:.875rem;color:var(--color-text-muted);display:flex;flex-direction:column;gap:var(--sp-2)">
+              <li><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Free for annual members</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Tools & safety gear provided</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Max 8–18 participants</li>
+              <li><i class="fa-solid fa-circle-check" style="color:var(--color-accent)"></i> Cancel up to 48hrs before</li>
+            </ul>
+            <a href="membership.html" class="btn btn-primary w-full" style="margin-top:var(--sp-4)">
+              <i class="fa-solid fa-id-card"></i>Join to Access All
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
+      <div class="footer__brand">
+        <a class="navbar__brand" href="../index.html" aria-label="ToolShare Home">
+          <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+          <div>
+            <div class="navbar__name" style="color:#fff">ToolShare</div>
+            <div class="navbar__tagline">Community Workshop</div>
+          </div>
+        </a>
+        <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
+        <div class="social-links" style="margin-top:var(--sp-5)">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer__links">
+          <li><a href="catalog.html">Tool Catalog</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <ul class="footer__links">
+          <li><a href="dashboard/user.html">My Dashboard</a></li>
+          <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
+          <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
+          <li><a href="pages/workshops.html">Book Workshop</a></li>
+          <li><a href="#">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer__links">
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
+          <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
+      <p><a href="#" style="color:rgba(255,255,255,.4)">Privacy Policy</a> · <a href="#" style="color:rgba(255,255,255,.4)">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Book Workshop Modal -->
+<div class="modal-overlay" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal__header">
+      <h3 id="bookModalTitle">Book Workshop Spot</h3>
+      <button class="modal__close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form data-validate action="#" method="POST" aria-label="Workshop booking form">
+      <div class="form-group">
+        <label for="bkName" class="form-label">Full Name <span class="required">*</span></label>
+        <input type="text" id="bkName" name="name" class="form-control" placeholder="Jane Smith" data-rules="required|minLength:2" aria-required="true"/>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="bkEmail" class="form-label">Email Address <span class="required">*</span></label>
+        <input type="email" id="bkEmail" name="email" class="form-control" placeholder="jane@example.com" data-rules="required|email" aria-required="true"/>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="bkMembership" class="form-label">Membership Number</label>
+        <input type="text" id="bkMembership" name="membership" class="form-control" placeholder="MBR-0000 (members only)"/>
+        <span class="form-hint">Leave blank if not a member. Non-member fee applies.</span>
+      </div>
+      <div class="form-group">
+        <label for="bkNotes" class="form-label">Dietary / Accessibility Needs</label>
+        <textarea id="bkNotes" name="notes" class="form-control" rows="2" placeholder="Any requirements we should know about…"></textarea>
+      </div>
+      <div class="flex gap-4" style="justify-content:flex-end">
+        <button type="button" class="btn btn-ghost" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i>Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast-container" aria-live="polite"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

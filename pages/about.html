@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – ToolShare Community Workshop</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="description" content="Learn about ToolShare's mission, history, and the team dedicated to making tools accessible to everyone in our neighborhood."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <style>
+    .team-card{text-align:center;padding:var(--sp-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:all var(--transition)}
+    .team-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .team-avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--color-accent);margin:0 auto var(--sp-4)}
+    .team-name{font-weight:700;margin-bottom:var(--sp-1)}
+    .team-role{font-size:.875rem;color:var(--color-accent);font-weight:600;margin-bottom:var(--sp-3)}
+    .team-bio{font-size:.875rem;color:var(--color-text-muted)}
+    .mission-split{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-12);align-items:center}
+    .timeline{position:relative;padding-left:var(--sp-8)}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--color-border)}
+    .tl-item{position:relative;margin-bottom:var(--sp-8)}
+    .tl-item::before{content:'';position:absolute;left:calc(-1 * var(--sp-8) - 5px);top:4px;width:12px;height:12px;border-radius:50%;background:var(--color-accent);border:2px solid var(--color-surface);box-shadow:0 0 0 2px var(--color-accent)}
+    .tl-year{font-size:.8125rem;font-weight:700;color:var(--color-accent);margin-bottom:var(--sp-1);text-transform:uppercase;letter-spacing:.06em}
+    .tl-title{font-weight:700;margin-bottom:var(--sp-2)}
+    .tl-desc{font-size:.9rem;color:var(--color-text-muted)}
+    @media(max-width:1023px){.mission-split{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header role="banner">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="../index.html"><div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div><div><div class="navbar__name">ToolShare</div><div class="navbar__tagline">Community Workshop</div></div></a>
+      <ul class="nav-links" role="list">
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
+          <ul class="dropdown-menu" aria-label="Home submenu">
+            <li><a href="../index.html">Home 1</a></li>
+            <li><a href="../index2.html">Home 2</a></li>
+          </ul>
+        </li>
+        <li><a href="catalog.html">Tool Catalog</a></li>
+        <li><a href="workshops.html">Workshops</a></li><li><a href="membership.html">Membership</a></li>
+        <li><a href="about.html" class="active">About</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-ctrls">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+        <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
+        <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a>
+        <a href="../dashboard/user.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer" role="navigation">
+    <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+    <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+    <a href="workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+    <a href="membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+    <a href="../dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+  </div>
+</header>
+
+<main id="main-content">
+  <section class="page-hero" style="--page-hero-bg:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&h=500&fit=crop&q=80')"
+    aria-labelledby="about-heading">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span aria-current="page">About</span>
+      </nav>
+      <h1><i class="fa-solid fa-people-group" aria-hidden="true"></i> About ToolShare</h1>
+      <p>A community-run nonprofit making tools and knowledge accessible to everyone since 2013.</p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section" aria-labelledby="mission-heading">
+    <div class="container">
+      <div class="mission-split">
+        <div class="reveal-left">
+          <span class="section__label">Our Mission</span>
+          <h2 id="mission-heading" style="margin-bottom:var(--sp-5)">Tools for Everyone, Not Just Those Who Can Afford Them</h2>
+          <p>ToolShare started in 2013 with 40 tools in a volunteer's garage. Today we operate a professional 4,000 sq ft facility with over 850 tools, a full workshop space, and a thriving community of makers, fixers, and learners.</p>
+          <p>We believe no one should have to buy a $300 drill they'll use once. Sharing resources builds community, reduces waste, and puts money back in your pocket.</p>
+          <div class="flex gap-4" style="margin-top:var(--sp-6)">
+            <a href="membership.html" class="btn btn-primary"><i class="fa-solid fa-id-card"></i>Join Us</a>
+            <a href="contact.html" class="btn btn-outline"><i class="fa-solid fa-handshake"></i>Volunteer</a>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=560&h=400&fit=crop" alt="Community members working together in the ToolShare workshop" style="border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);width:100%"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section section-bg-alt" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section__header reveal"><span class="section__label">Values</span>
+        <h2 id="values-heading" class="section__title">What Drives Us</h2></div>
+      <div class="grid grid-4">
+        <div class="feature-card reveal"><div class="feature-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+          <h3>Community First</h3><p>Every decision is made with the neighborhood in mind, not profit.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon"><i class="fa-solid fa-recycle"></i></div>
+          <h3>Sustainability</h3><p>Sharing tools reduces consumption, waste, and carbon footprint.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon"><i class="fa-solid fa-door-open"></i></div>
+          <h3>Accessibility</h3><p>Income-based pricing ensures no one is priced out of participation.</p></div>
+        <div class="feature-card reveal"><div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3>Education</h3><p>Teaching skills builds independence and confidence across generations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section" aria-labelledby="history-heading">
+    <div class="container" style="max-width:720px">
+      <div class="section__header reveal"><span class="section__label">History</span>
+        <h2 id="history-heading" class="section__title">Our Story</h2></div>
+      <div class="timeline reveal">
+        <div class="tl-item"><div class="tl-year">2013</div><div class="tl-title">Founded in a Garage</div><div class="tl-desc">Started with 40 donated tools and 12 founding members. First "workshop" was a neighbor's driveway.</div></div>
+        <div class="tl-item"><div class="tl-year">2015</div><div class="tl-title">First Dedicated Space</div><div class="tl-desc">Moved into a 1,000 sq ft rented space on Elm Street. Membership grew to 120.</div></div>
+        <div class="tl-item"><div class="tl-year">2017</div><div class="tl-title">Nonprofit Status</div><div class="tl-desc">Obtained 501(c)(3) nonprofit status, enabling grant funding and tax-deductible donations.</div></div>
+        <div class="tl-item"><div class="tl-year">2019</div><div class="tl-title">Workshop Program Launch</div><div class="tl-desc">Started formal workshop programming with 6 classes in year one. 200+ attendees.</div></div>
+        <div class="tl-item"><div class="tl-year">2021</div><div class="tl-title">New Facility</div><div class="tl-desc">Moved to current 4,000 sq ft facility. Online reservation system launched.</div></div>
+        <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">850+ Tools & 520 Members</div><div class="tl-desc">Largest community tool library in the region. 48 workshops per year and growing.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section section-bg-alt" aria-labelledby="team-heading">
+    <div class="container">
+      <div class="section__header reveal"><span class="section__label">The People</span>
+        <h2 id="team-heading" class="section__title">Meet the Team</h2>
+        <p class="section__subtitle">Our small paid staff is supported by 60+ dedicated volunteers.</p>
+      </div>
+      <div class="grid grid-4">
+        <div class="team-card reveal">
+          <img class="team-avatar" src="https://i.pravatar.cc/96?img=11" alt="Portrait of Karen L."/>
+          <div class="team-name">Karen L.</div>
+          <div class="team-role">Executive Director</div>
+          <p class="team-bio">15 years in nonprofit management. Passionate about sustainable communities and the right-to-repair movement.</p>
+        </div>
+        <div class="team-card reveal">
+          <img class="team-avatar" src="https://i.pravatar.cc/96?img=21" alt="Portrait of James K."/>
+          <div class="team-name">James K.</div>
+          <div class="team-role">Shop Manager & Lead Instructor</div>
+          <p class="team-bio">Master carpenter with 20 years of trade experience. Teaches woodworking and general tool safety.</p>
+        </div>
+        <div class="team-card reveal">
+          <img class="team-avatar" src="https://i.pravatar.cc/96?img=32" alt="Portrait of Maria S."/>
+          <div class="team-name">Maria S.</div>
+          <div class="team-role">Member Services & Plumbing Instructor</div>
+          <p class="team-bio">Licensed plumber and community educator. Handles member onboarding and borrowing support.</p>
+        </div>
+        <div class="team-card reveal">
+          <img class="team-avatar" src="https://i.pravatar.cc/96?img=44" alt="Portrait of David R."/>
+          <div class="team-name">David R.</div>
+          <div class="team-role">Tool Maintenance Coordinator</div>
+          <p class="team-bio">Former industrial mechanic. Ensures every tool in our catalog is safe, clean, and working perfectly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
+      <div class="footer__brand">
+        <a class="navbar__brand" href="../index.html" aria-label="ToolShare Home">
+          <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+          <div>
+            <div class="navbar__name" style="color:#fff">ToolShare</div>
+            <div class="navbar__tagline">Community Workshop</div>
+          </div>
+        </a>
+        <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
+        <div class="social-links" style="margin-top:var(--sp-5)">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer__links">
+          <li><a href="catalog.html">Tool Catalog</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <ul class="footer__links">
+          <li><a href="dashboard/user.html">My Dashboard</a></li>
+          <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
+          <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
+          <li><a href="pages/workshops.html">Book Workshop</a></li>
+          <li><a href="#">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer__links">
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
+          <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
+      <p><a href="#" style="color:rgba(255,255,255,.4)">Privacy Policy</a> · <a href="#" style="color:rgba(255,255,255,.4)">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+<div class="toast-container" aria-live="polite"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

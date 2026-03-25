@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard – ToolShare</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <link rel="stylesheet" href="../assets/css/dashboard.css"/>
+</head>
+<body>
+
+<header>
+  <nav class="navbar" aria-label="Admin navigation">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="../index.html">
+        <div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div>
+        <div><div class="navbar__name">ToolShare</div><div class="navbar__tagline" style="color:var(--color-accent)">Admin Panel</div></div>
+      </a>
+      <div class="nav-ctrls">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
+        <div style="position:relative">
+          <button class="icon-btn" aria-label="3 notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--color-error)"></span>
+          </button>
+        </div>
+        <a href="user.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-user"></i>Member View</a>
+        <a href="../index.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i>Site</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="dash-layout">
+  <!-- Admin Sidebar -->
+  <aside class="dash-sidebar" id="dashSidebar" aria-label="Admin navigation">
+    <div class="dash-sidebar-brand">
+      <img class="user-avatar" src="https://i.pravatar.cc/48?img=11" alt="Karen L. avatar"/>
+      <div class="user-name">Karen L.</div>
+      <span class="user-badge"><i class="fa-solid fa-shield-halved"></i> Administrator</span>
+    </div>
+
+    <div class="dash-nav-section"><span class="dash-nav-section-label">Overview</span></div>
+    <a href="#" class="dash-nav-item active" data-section="overview"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <a href="#" class="dash-nav-item" data-section="analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+
+    <div class="dash-nav-section"><span class="dash-nav-section-label">Manage</span></div>
+    <a href="#" class="dash-nav-item" data-section="inventory"><i class="fa-solid fa-toolbox"></i> Tool Inventory <span class="dash-nav-badge">3</span></a>
+    <a href="#" class="dash-nav-item" data-section="members"><i class="fa-solid fa-users"></i> Members</a>
+    <a href="#" class="dash-nav-item" data-section="reservations"><i class="fa-solid fa-calendar-check"></i> Reservations <span class="dash-nav-badge" style="background:#C62828">2</span></a>
+    <a href="#" class="dash-nav-item" data-section="workshops"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+
+    <div class="dash-nav-section"><span class="dash-nav-section-label">Reports</span></div>
+    <a href="#" class="dash-nav-item" data-section="reports"><i class="fa-solid fa-file-chart-column"></i> Reports</a>
+    <a href="#" class="dash-nav-item" data-section="messages"><i class="fa-solid fa-message"></i> Messages</a>
+
+    <div class="dash-nav-section"><span class="dash-nav-section-label">System</span></div>
+    <a href="#" class="dash-nav-item" data-section="settings"><i class="fa-solid fa-gears"></i> Settings</a>
+
+    <div class="dash-nav-logout">
+      <button class="dash-nav-item" onclick="alert('Logging out…')"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- Admin Main -->
+  <main id="main-content" class="dash-main">
+    <section id="section-overview" aria-labelledby="adm-overview-h">
+      <div class="dash-top">
+        <div>
+          <div class="dash-top-title" id="adm-overview-h">Admin Dashboard</div>
+          <div style="color:var(--color-text-muted);font-size:.875rem">Wednesday, March 25, 2025</div>
+        </div>
+        <div class="flex gap-2">
+          <button class="btn btn-outline btn-sm"><i class="fa-solid fa-download"></i>Export CSV</button>
+          <button class="btn btn-primary btn-sm" data-modal="addToolModal"><i class="fa-solid fa-plus"></i>Add Tool</button>
+        </div>
+      </div>
+      <div class="dash-inner">
+        <!-- Stats -->
+        <div class="dash-stats" role="list">
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon orange"><i class="fa-solid fa-toolbox"></i></div>
+            <div class="dash-stat-value">850</div>
+            <div class="dash-stat-label">Total Tools</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> 12 added this month</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon green"><i class="fa-solid fa-users"></i></div>
+            <div class="dash-stat-value">520</div>
+            <div class="dash-stat-label">Active Members</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> +8 this month</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="dash-stat-value">147</div>
+            <div class="dash-stat-label">Active Loans</div>
+            <div class="dash-stat-change down"><i class="fa-solid fa-triangle-exclamation"></i> 2 overdue</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon purple"><i class="fa-solid fa-dollar-sign"></i></div>
+            <div class="dash-stat-value">$33.8k</div>
+            <div class="dash-stat-label">Annual Revenue</div>
+            <div class="dash-stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> +$2.1k vs last year</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon orange"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <div class="dash-stat-value">6</div>
+            <div class="dash-stat-label">Upcoming Workshops</div>
+            <div class="dash-stat-change"><i class="fa-solid fa-calendar"></i> Next Apr 5</div>
+          </div>
+          <div class="dash-card" role="listitem">
+            <div class="dash-stat-icon red"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <div class="dash-stat-value">3</div>
+            <div class="dash-stat-label">In Maintenance</div>
+            <div class="dash-stat-change down"><i class="fa-solid fa-clock"></i> Avg 4 days</div>
+          </div>
+        </div>
+
+        <!-- Two-column content -->
+        <div class="grid grid-2" style="gap:var(--sp-6)">
+          <!-- Recent Reservations -->
+          <div>
+            <div class="dash-section-hd">
+              <h3>Recent Reservations</h3>
+              <button class="btn btn-ghost btn-sm">View All</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Member</th><th>Tool</th><th>Due</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Jane S.</td><td>DeWalt Drill</td><td>Mar 29</td><td><span class="card__badge badge-available">Active</span></td></tr>
+                  <tr><td>Tom R.</td><td>Circular Saw</td><td>Apr 7</td><td><span class="card__badge badge-available">Active</span></td></tr>
+                  <tr><td>Diana L.</td><td>Pressure Washer</td><td><strong style="color:var(--color-error)">Mar 18 ⚠</strong></td><td><span class="card__badge badge-reserved">Overdue</span></td></tr>
+                  <tr><td>Ahmed K.</td><td>Belt Sander</td><td><strong style="color:var(--color-error)">Mar 20 ⚠</strong></td><td><span class="card__badge badge-reserved">Overdue</span></td></tr>
+                  <tr><td>Priya T.</td><td>Pipe Wrench Set</td><td>Apr 1</td><td><span class="card__badge badge-available">Active</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- New Members -->
+          <div>
+            <div class="dash-section-hd">
+              <h3>New Members</h3>
+              <button class="btn btn-ghost btn-sm">View All</button>
+            </div>
+            <div class="res-row"><div class="res-icon"><i class="fa-solid fa-user"></i></div><div class="res-info"><div class="res-name">Maria Chen</div><div class="res-dates">Standard · Joined Mar 24</div></div><span class="card__badge badge-available">Active</span></div>
+            <div class="res-row"><div class="res-icon"><i class="fa-solid fa-user"></i></div><div class="res-info"><div class="res-name">Robert Kim</div><div class="res-dates">Family · Joined Mar 22</div></div><span class="card__badge badge-available">Active</span></div>
+            <div class="res-row"><div class="res-icon"><i class="fa-solid fa-user"></i></div><div class="res-info"><div class="res-name">Sarah Obi</div><div class="res-dates">Basic · Joined Mar 21</div></div><span class="card__badge badge-available">Active</span></div>
+            <div class="res-row"><div class="res-icon"><i class="fa-solid fa-user"></i></div><div class="res-info"><div class="res-name">James Park</div><div class="res-dates">Standard · Joined Mar 19</div></div><span class="card__badge badge-available">Active</span></div>
+          </div>
+        </div>
+
+        <!-- Tool Inventory Table -->
+        <div style="margin-top:var(--sp-8)">
+          <div class="dash-section-hd">
+            <h3>Tool Inventory — Needs Attention</h3>
+            <button class="btn btn-outline btn-sm" data-modal="addToolModal"><i class="fa-solid fa-plus"></i>Add Tool</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Cat. #</th><th>Tool Name</th><th>Category</th><th>Status</th><th>Condition</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>WW-009</td><td><strong>Router Table with Fence</strong></td><td>Woodworking</td>
+                  <td><span class="card__badge badge-unavailable">Maintenance</span></td>
+                  <td>Needs Belt</td>
+                  <td><div style="display:flex;gap:var(--sp-2)">
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-check"></i></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td>ELC-003</td><td><strong>Voltage Tester Kit</strong></td><td>Electrical</td>
+                  <td><span class="card__badge badge-unavailable">Maintenance</span></td>
+                  <td>Battery replaced</td>
+                  <td><div style="display:flex;gap:var(--sp-2)">
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-check"></i></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td>OUT-015</td><td><strong>Leaf Blower Gas</strong></td><td>Outdoor/Garden</td>
+                  <td><span class="card__badge badge-unavailable">Maintenance</span></td>
+                  <td>Carb cleaning</td>
+                  <td><div style="display:flex;gap:var(--sp-2)">
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-check"></i></button>
+                  </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Revenue Chart Placeholder -->
+        <div style="margin-top:var(--sp-8)">
+          <div class="dash-section-hd"><h3>Revenue Overview (2025)</h3></div>
+          <div class="chart-placeholder" role="img" aria-label="Revenue chart placeholder">
+            <i class="fa-solid fa-chart-line" style="font-size:2.5rem;color:var(--color-accent)"></i>
+            <div><strong>Revenue Chart</strong><br>
+            <!-- TODO: Integrate Chart.js or similar library for live analytics -->
+            <span style="font-size:.8rem">Connect Chart.js via dashboard.js to render real data</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Add Tool Modal -->
+<div class="modal-overlay" id="addToolModal" role="dialog" aria-modal="true" aria-labelledby="addToolTitle" aria-hidden="true">
+  <div class="modal" style="max-width:600px">
+    <div class="modal__header">
+      <h3 id="addToolTitle">Add New Tool</h3>
+      <button class="modal__close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form data-validate action="#" method="POST" aria-label="Add tool form">
+      <div class="grid grid-2" style="gap:var(--sp-4)">
+        <div class="form-group">
+          <label for="atName" class="form-label">Tool Name <span class="required">*</span></label>
+          <input type="text" id="atName" name="name" class="form-control" placeholder="e.g. DeWalt Drill" data-rules="required" aria-required="true"/>
+          <span class="form-error" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="atCat" class="form-label">Catalog # <span class="required">*</span></label>
+          <input type="text" id="atCat" name="catnum" class="form-control" placeholder="e.g. PTL-043" data-rules="required" aria-required="true"/>
+          <span class="form-error" role="alert"></span>
+        </div>
+      </div>
+      <div class="grid grid-2" style="gap:var(--sp-4)">
+        <div class="form-group">
+          <label for="atCategory" class="form-label">Category <span class="required">*</span></label>
+          <select id="atCategory" name="category" class="form-control" data-rules="nonempty" aria-required="true">
+            <option value="">Select…</option>
+            <option>Power Tools</option><option>Hand Tools</option><option>Woodworking</option>
+            <option>Plumbing</option><option>Electrical</option><option>Outdoor/Garden</option><option>Other</option>
+          </select>
+          <span class="form-error" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="atBrand" class="form-label">Brand</label>
+          <input type="text" id="atBrand" name="brand" class="form-control" placeholder="e.g. DeWalt"/>
+        </div>
+      </div>
+      <div class="grid grid-2" style="gap:var(--sp-4)">
+        <div class="form-group">
+          <label for="atCondition" class="form-label">Condition</label>
+          <select id="atCondition" name="condition" class="form-control">
+            <option>Excellent</option><option>Good</option><option>Fair</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="atMaxDuration" class="form-label">Max Borrow (days)</label>
+          <input type="number" id="atMaxDuration" name="maxdays" class="form-control" value="14" min="1" max="30"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="atDescription" class="form-label">Description</label>
+        <textarea id="atDescription" name="description" class="form-control" rows="2" placeholder="Brief tool description…"></textarea>
+      </div>
+      <div class="flex gap-4" style="justify-content:flex-end">
+        <button type="button" class="btn btn-ghost" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Add to Inventory</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast-container" aria-live="polite"></div>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membership – ToolShare Community Workshop</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta name="description" content="Join ToolShare for just $65/year. Borrow unlimited tools, attend free workshops, and access our full community workspace."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <style>
+    .tiers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-6);align-items:start}
+    .faq-item{border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:var(--sp-3)}
+    .faq-question{
+      width:100%;padding:var(--sp-5) var(--sp-6);text-align:left;font-weight:600;
+      background:var(--color-surface);display:flex;justify-content:space-between;align-items:center;
+      cursor:pointer;color:var(--color-text);transition:background var(--transition);
+    }
+    .faq-question:hover{background:var(--color-bg-alt)}
+    .faq-question[aria-expanded="true"]{color:var(--color-accent)}
+    .faq-question i{transition:transform var(--transition);color:var(--color-accent)}
+    .faq-question[aria-expanded="true"] i{transform:rotate(45deg)}
+    .faq-answer{display:none;padding:var(--sp-4) var(--sp-6) var(--sp-5);color:var(--color-text-muted);border-top:1px solid var(--color-border);background:var(--color-surface)}
+    .faq-answer.open{display:block}
+  </style>
+</head>
+<body>
+<header role="banner">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a class="navbar__brand" href="../index.html"><div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div><div><div class="navbar__name">ToolShare</div><div class="navbar__tagline">Community Workshop</div></div></a>
+      <ul class="nav-links" role="list">
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
+          <ul class="dropdown-menu" aria-label="Home submenu">
+            <li><a href="../index.html">Home 1</a></li>
+            <li><a href="../index2.html">Home 2</a></li>
+          </ul>
+        </li>
+        <li><a href="catalog.html">Tool Catalog</a></li>
+        <li><a href="workshops.html">Workshops</a></li><li><a href="membership.html" class="active">Membership</a></li>
+        <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-ctrls">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+        <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
+        <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a>
+        <a href="../dashboard/user.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer" role="navigation">
+    <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+    <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+    <a href="workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+    <a href="membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+    <a href="../dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+  </div>
+</header>
+
+<main id="main-content">
+  <section class="page-hero" style="--page-hero-bg:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&h=500&fit=crop&q=80')"
+    aria-labelledby="membership-heading">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span aria-current="page">Membership</span>
+      </nav>
+      <h1><i class="fa-solid fa-id-card" aria-hidden="true"></i> Membership Plans</h1>
+      <p>Choose the plan that fits your needs. Every tier includes unlimited tool borrowing.</p>
+    </div>
+  </section>
+
+  <!-- Tiers -->
+  <section class="section" aria-labelledby="tiers-heading">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Pricing</span>
+        <h2 id="tiers-heading" class="section__title">Simple, Honest Pricing</h2>
+        <p class="section__subtitle">All tiers provide full catalog access. Upgrade anytime. Cancel before renewal.</p>
+      </div>
+      <div class="tiers-grid">
+        <!-- Basic -->
+        <div class="tier-card reveal">
+          <p style="font-size:.875rem;font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2)">Basic</p>
+          <div class="tier-price">$45 <span class="tier-period">/ year</span></div>
+          <p style="color:var(--color-text-muted);font-size:.9rem;margin-top:var(--sp-3);margin-bottom:0">Great for occasional borrowers.</p>
+          <ul class="tier-features" aria-label="Basic plan features">
+            <li><i class="fa-solid fa-circle-check"></i> Full catalog access</li>
+            <li><i class="fa-solid fa-circle-check"></i> Up to 2 tools at once</li>
+            <li><i class="fa-solid fa-circle-check"></i> 7-day borrow period</li>
+            <li><i class="fa-solid fa-circle-check"></i> 2 workshop credits/year</li>
+            <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Workspace access</li>
+            <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Priority reservations</li>
+            <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Guest passes</li>
+          </ul>
+          <a href="#signupModal" class="btn btn-outline w-full" data-modal="signupModal">Get Started</a>
+        </div>
+        <!-- Standard (Featured) -->
+        <div class="tier-card featured reveal" style="margin-top:-var(--sp-4)">
+          <span class="popular-tag">⭐ Most Popular</span>
+          <p style="font-size:.875rem;font-weight:600;color:var(--color-accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2)">Standard</p>
+          <div class="tier-price">$65 <span class="tier-period">/ year</span></div>
+          <p style="color:var(--color-text-muted);font-size:.9rem;margin-top:var(--sp-3);margin-bottom:0">Our most popular plan for active makers.</p>
+          <ul class="tier-features" aria-label="Standard plan features">
+            <li><i class="fa-solid fa-circle-check"></i> Full catalog access</li>
+            <li><i class="fa-solid fa-circle-check"></i> Up to 4 tools at once</li>
+            <li><i class="fa-solid fa-circle-check"></i> 14-day borrow period</li>
+            <li><i class="fa-solid fa-circle-check"></i> Unlimited workshops</li>
+            <li><i class="fa-solid fa-circle-check"></i> Workspace access</li>
+            <li><i class="fa-solid fa-circle-check"></i> Priority reservations</li>
+            <li class="disabled"><i class="fa-solid fa-circle-xmark"></i> Guest passes</li>
+          </ul>
+          <a href="#signupModal" class="btn btn-primary w-full" data-modal="signupModal">Join Now — $65/yr</a>
+        </div>
+        <!-- Family -->
+        <div class="tier-card reveal">
+          <p style="font-size:.875rem;font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--sp-2)">Family</p>
+          <div class="tier-price">$95 <span class="tier-period">/ year</span></div>
+          <p style="color:var(--color-text-muted);font-size:.9rem;margin-top:var(--sp-3);margin-bottom:0">For households of up to 4 people.</p>
+          <ul class="tier-features" aria-label="Family plan features">
+            <li><i class="fa-solid fa-circle-check"></i> Full catalog access</li>
+            <li><i class="fa-solid fa-circle-check"></i> Up to 6 tools at once</li>
+            <li><i class="fa-solid fa-circle-check"></i> 21-day borrow period</li>
+            <li><i class="fa-solid fa-circle-check"></i> Unlimited workshops</li>
+            <li><i class="fa-solid fa-circle-check"></i> Workspace access</li>
+            <li><i class="fa-solid fa-circle-check"></i> Priority reservations</li>
+            <li><i class="fa-solid fa-circle-check"></i> 4 guest passes/year</li>
+          </ul>
+          <a href="#signupModal" class="btn btn-outline w-full" data-modal="signupModal">Choose Family</a>
+        </div>
+      </div>
+
+      <!-- Comparison note -->
+      <div class="card reveal" style="max-width:640px;margin:var(--sp-10) auto 0;padding:var(--sp-6);text-align:center">
+        <i class="fa-solid fa-hand-holding-heart" style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
+        <h3 style="margin-bottom:var(--sp-2)">Income-Based Memberships</h3>
+        <p style="color:var(--color-text-muted)">We offer reduced-rate memberships for those facing financial hardship. No proof required — just ask at the front desk or <a href="contact.html">contact us</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section section-bg-alt" aria-labelledby="benefits-heading">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Member Benefits</span>
+        <h2 id="benefits-heading" class="section__title">What You Get as a Member</h2>
+      </div>
+      <div class="grid grid-4">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-toolbox"></i></div>
+          <h3>850+ Tools</h3>
+          <p>Power tools, hand tools, specialty equipment — maintained and ready to borrow.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h3>Free Workshops</h3>
+          <p>Standard & Family members attend all workshops at no extra charge.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-warehouse"></i></div>
+          <h3>Workspace Access</h3>
+          <p>Use our workshop space, benches, and fixed machinery during open hours.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+          <h3>Expert Support</h3>
+          <p>Staff and volunteers on hand to help with project advice and tool guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" aria-labelledby="faq-heading">
+    <div class="container" style="max-width:720px">
+      <div class="section__header reveal">
+        <span class="section__label">FAQ</span>
+        <h2 id="faq-heading" class="section__title">Common Questions</h2>
+      </div>
+      <div class="reveal">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq1">
+            How do I borrow a tool? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq1">Browse the catalog online, reserve your tool, and pick it up during open hours with your membership card. It's that simple!</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq2">
+            What if I damage a borrowed tool? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq2">Accidents happen. Report it immediately at return. Minor wear is covered. Significant damage may incur a repair fee, assessed case-by-case. Basic insurance is included with all memberships.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq3">
+            Can I renew or extend a borrowing period? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq3">Yes! If no one else has reserved the tool, you can extend your borrowing period once via your dashboard or by calling us.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq4">
+            Are memberships refundable? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq4">We offer a prorated refund within the first 30 days if you haven't borrowed any tools. After that, memberships are non-refundable but transferable to a household member.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq5">
+            What payment methods are accepted? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq5">We accept all major credit/debit cards (via Stripe), PayPal, and cash in person. Checks made payable to ToolShare Community Workshop.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq6">
+            Do I need to be a member to attend workshops? <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="faq-answer" id="faq6">Some workshops are open to the public for a small fee ($10–$25). Standard and Family members attend all workshops for free. Check each event listing for details.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Sign Up Modal -->
+<div class="modal-overlay" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="signupModalTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal__header">
+      <h3 id="signupModalTitle">Join ToolShare</h3>
+      <button class="modal__close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form data-validate action="#" method="POST" aria-label="Membership signup form">
+      <div class="grid grid-2" style="gap:var(--sp-4)">
+        <div class="form-group">
+          <label for="sgFName" class="form-label">First Name <span class="required">*</span></label>
+          <input type="text" id="sgFName" name="fname" class="form-control" placeholder="Jane" data-rules="required" aria-required="true"/>
+          <span class="form-error" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="sgLName" class="form-label">Last Name <span class="required">*</span></label>
+          <input type="text" id="sgLName" name="lname" class="form-control" placeholder="Smith" data-rules="required" aria-required="true"/>
+          <span class="form-error" role="alert"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sgEmail" class="form-label">Email <span class="required">*</span></label>
+        <input type="email" id="sgEmail" name="email" class="form-control" placeholder="jane@example.com" data-rules="required|email" aria-required="true"/>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="sgPhone" class="form-label">Phone</label>
+        <input type="tel" id="sgPhone" name="phone" class="form-control" placeholder="+1 (555) 000-0000" data-rules="phone" autocomplete="tel"/>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <div class="form-group">
+        <label for="sgPlan" class="form-label">Plan <span class="required">*</span></label>
+        <select id="sgPlan" name="plan" class="form-control" data-rules="nonempty" aria-required="true">
+          <option value="">Select a plan…</option>
+          <option value="basic">Basic – $45/year</option>
+          <option value="standard">Standard – $65/year</option>
+          <option value="family">Family – $95/year</option>
+        </select>
+        <span class="form-error" role="alert"></span>
+      </div>
+      <!-- Payment Placeholder (Stripe) -->
+      <div class="form-group">
+        <label class="form-label">Payment</label>
+        <div style="border:2px dashed var(--color-border);border-radius:var(--radius-md);padding:var(--sp-5);text-align:center;color:var(--color-text-muted);font-size:.875rem">
+          <i class="fa-brands fa-stripe" style="font-size:2rem;color:#635BFF;display:block;margin-bottom:var(--sp-2)"></i>
+          <!-- TODO: Replace with Stripe.js Elements -->
+          Stripe payment form loads here
+        </div>
+      </div>
+      <div class="flex gap-4" style="justify-content:flex-end">
+        <button type="button" class="btn btn-ghost" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-lock"></i>Pay & Join</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast-container" aria-live="polite"></div>
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
+      <div class="footer__brand">
+        <a class="navbar__brand" href="../index.html" aria-label="ToolShare Home">
+          <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+          <div>
+            <div class="navbar__name" style="color:#fff">ToolShare</div>
+            <div class="navbar__tagline">Community Workshop</div>
+          </div>
+        </a>
+        <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
+        <div class="social-links" style="margin-top:var(--sp-5)">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer__links">
+          <li><a href="catalog.html">Tool Catalog</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <ul class="footer__links">
+          <li><a href="dashboard/user.html">My Dashboard</a></li>
+          <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
+          <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
+          <li><a href="pages/workshops.html">Book Workshop</a></li>
+          <li><a href="#">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer__links">
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
+          <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
+      <p><a href="#" style="color:rgba(255,255,255,.4)">Privacy Policy</a> · <a href="#" style="color:rgba(255,255,255,.4)">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-question').forEach(b => {
+        b.setAttribute('aria-expanded','false');
+        document.getElementById(b.getAttribute('aria-controls'))?.classList.remove('open');
+      });
+      if (!expanded) {
+        btn.setAttribute('aria-expanded','true');
+        document.getElementById(btn.getAttribute('aria-controls'))?.classList.add('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

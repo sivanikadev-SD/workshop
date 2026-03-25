@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ToolShare – Home v2</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <meta name="description" content="Borrow tools, join workshops, build anything — ToolShare community workshop."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/dark-mode.css"/>
+  <link rel="stylesheet" href="assets/css/rtl.css"/>
+  <style>
+  /* ════════════════════════════════════
+     HOME v2 — Minimal Bento Design
+  ════════════════════════════════════ */
+
+  /* ── Transparent-to-solid nav ── */
+  .v2-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: var(--sp-4) var(--sp-8);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .35s, box-shadow .35s;
+  }
+  .v2-nav.scrolled {
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 20px rgba(0,0,0,.08);
+  }
+  [data-theme="dark"] .v2-nav.scrolled { background: rgba(18,18,18,.92); }
+  .v2-nav-brand { display: flex; align-items: center; gap: var(--sp-3); text-decoration: none; }
+  .v2-nav-logo {
+    width: 38px; height: 38px; background: var(--color-accent);
+    border-radius: var(--radius-md); display: grid; place-items: center;
+    color: #fff; font-size: 1rem;
+  }
+  .v2-nav-name { font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: #fff; transition: color .3s; }
+  .v2-nav.scrolled .v2-nav-name { color: var(--color-primary); }
+  .v2-nav-links { display: flex; align-items: center; gap: var(--sp-1); }
+  .v2-nav-links a {
+    padding: 7px 14px; border-radius: 20px; font-size: .9rem; font-weight: 500;
+    color: rgba(255,255,255,.85); transition: all .25s; text-decoration: none;
+  }
+  .v2-nav.scrolled .v2-nav-links a { color: var(--color-text-muted); }
+  .v2-nav-links a:hover { background: rgba(255,111,0,.15); color: var(--color-accent); }
+  .v2-nav-ctrls { display: flex; align-items: center; gap: var(--sp-2); }
+  .v2-mob-btn { display: none; }
+  @media(max-width:1023px) { .v2-nav-links { display: none; } .v2-mob-btn { display: grid; } }
+
+  /* ── HERO: full-viewport, centered ── */
+  .v2-hero {
+    min-height: 100vh;
+    background: #0c0c0c;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+    padding: 120px var(--sp-6) var(--sp-20);
+  }
+  /* Animated gradient background blobs */
+  .v2-hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 60%, rgba(255,111,0,.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 30%, rgba(100,50,0,.35) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 50% 100%, rgba(255,111,0,.08) 0%, transparent 50%);
+    animation: blobShift 12s ease-in-out infinite alternate;
+  }
+  @keyframes blobShift {
+    0%   { filter: blur(40px); transform: scale(1); }
+    100% { filter: blur(55px); transform: scale(1.06); }
+  }
+  /* Grid pattern overlay */
+  .v2-hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: .06;
+    background-image:
+      linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .v2-hero-inner { position: relative; z-index: 1; max-width: 860px; }
+  .v2-hero-badge {
+    display: inline-flex; align-items: center; gap: var(--sp-2);
+    background: rgba(255,111,0,.12); border: 1px solid rgba(255,111,0,.3);
+    color: var(--color-accent-light); border-radius: 20px;
+    padding: 6px 16px; font-size: .8125rem; font-weight: 600;
+    margin-bottom: var(--sp-7); letter-spacing: .04em;
+  }
+  .v2-hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+  .v2-hero h1 {
+    font-family: var(--font-head); font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05; color: #fff; margin-bottom: var(--sp-6);
+    letter-spacing: -.03em;
+  }
+  .v2-hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #FF6F00, #FFA040, #FF6F00);
+    background-size: 200%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: shimmerText 4s linear infinite;
+  }
+  @keyframes shimmerText { 0%{background-position:0%} 100%{background-position:200%} }
+  .v2-hero-sub {
+    color: rgba(255,255,255,.6); font-size: 1.125rem; max-width: 560px;
+    margin: 0 auto var(--sp-10); line-height: 1.7;
+  }
+  .v2-hero-actions { display: flex; justify-content: center; gap: var(--sp-4); flex-wrap: wrap; margin-bottom: var(--sp-14); }
+  /* Stats row */
+  .v2-hero-stats {
+    display: flex; justify-content: center; gap: var(--sp-10); flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,.1); padding-top: var(--sp-8);
+  }
+  .v2-stat { text-align: center; }
+  .v2-stat strong { display: block; font-size: 2.25rem; font-weight: 900; color: var(--color-accent); font-family: var(--font-head); }
+  .v2-stat small { font-size: .8125rem; color: rgba(255,255,255,.45); }
+
+  /* ── BENTO GRID ── */
+  .v2-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 var(--sp-6);
+  }
+  .v2-bento { border-radius: 20px; overflow: hidden; position: relative; transition: transform .3s, box-shadow .3s; }
+  .v2-bento:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+
+  /* Bento layout */
+  .bento-a { grid-column: span 5; grid-row: span 2; background: var(--color-accent); color: #fff; padding: var(--sp-10); }
+  .bento-b { grid-column: span 4; grid-row: span 1; background: var(--color-primary); color: #fff; padding: var(--sp-8); }
+  .bento-c { grid-column: span 3; grid-row: span 1; background: #F5F0EB; padding: var(--sp-8); }
+  .bento-d { grid-column: span 7; grid-row: span 1; position: relative; padding: 0; }
+  .bento-d img { width: 100%; height: 260px; object-fit: cover; display: block; }
+  .bento-d-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: var(--sp-6);
+  }
+  .bento-e { grid-column: span 4; grid-row: span 1; background: #212121; color: #fff; padding: var(--sp-8); }
+  .bento-f { grid-column: span 4; grid-row: span 1; background: linear-gradient(135deg,#FF6F00,#E65100); color: #fff; padding: var(--sp-8); }
+  .bento-g { grid-column: span 4; grid-row: span 1; border: 2px solid var(--color-border); background: var(--color-surface); padding: var(--sp-8); }
+
+  .bento-icon { font-size: 2.5rem; margin-bottom: var(--sp-5); }
+  .bento-a .bento-num { font-size: 5rem; font-weight: 900; font-family: var(--font-head); line-height: 1; opacity: .15; position: absolute; bottom: var(--sp-6); right: var(--sp-6); }
+  .bento-tag { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; opacity: .6; margin-bottom: var(--sp-2); }
+  .bento-h2 { font-size: 1.5rem; font-weight: 800; font-family: var(--font-head); margin-bottom: var(--sp-3); }
+  .bento-p { font-size: .9rem; opacity: .75; line-height: 1.6; }
+
+  [data-theme="dark"] .bento-c { background: #2a2a2a; color: var(--color-text-inv); }
+  [data-theme="dark"] .bento-g { background: #1e1e1e; border-color: #333; color: var(--color-text-inv); }
+
+  @media(max-width: 1023px) {
+    .bento-a,.bento-b,.bento-c,.bento-d,.bento-e,.bento-f,.bento-g {
+      grid-column: span 12;
+    }
+    .bento-d img { height: 220px; }
+    .bento-a .bento-num { font-size: 3rem; }
+  }
+  @media(min-width: 640px) and (max-width: 1023px) {
+    .bento-b,.bento-c,.bento-e,.bento-f,.bento-g { grid-column: span 6; }
+    .bento-a,.bento-d { grid-column: span 12; }
+  }
+
+  /* ── HORIZONTAL TOOL SCROLL ── */
+  .v2-tools-scroll {
+    overflow-x: auto; display: flex; gap: 20px;
+    padding: 0 var(--sp-8) var(--sp-4); scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+  }
+  .v2-tools-scroll::-webkit-scrollbar { height: 4px; }
+  .v2-tools-scroll::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 2px; }
+  .v2-tool-card {
+    flex: 0 0 300px; border-radius: 20px; overflow: hidden;
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm); scroll-snap-align: start;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .v2-tool-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .v2-tool-card img { width: 100%; height: 180px; object-fit: cover; }
+  .v2-tool-card-body { padding: var(--sp-5); }
+  .v2-tool-cat { font-size: .75rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: .08em; }
+  .v2-tool-name { font-weight: 700; font-size: 1.05rem; margin: var(--sp-1) 0 var(--sp-3); }
+  .v2-tool-row { display: flex; align-items: center; justify-content: space-between; }
+
+  /* ── WORKSHOP SPLIT ── */
+  .v2-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    max-width: 1280px; margin: 0 auto; border-radius: 24px; overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .v2-split-img { position: relative; min-height: 500px; }
+  .v2-split-img img { width: 100%; height: 100%; object-fit: cover; }
+  .v2-split-content {
+    background: var(--color-primary); color: #fff;
+    padding: var(--sp-16) var(--sp-12);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .v2-split-label { font-size: .75rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: .12em; margin-bottom: var(--sp-4); }
+  .v2-split-content h2 { color: #fff; font-size: clamp(1.75rem,3vw,2.5rem); font-weight: 900; margin-bottom: var(--sp-5); }
+  .v2-split-content p { color: rgba(255,255,255,.65); font-size: 1rem; margin-bottom: var(--sp-8); }
+
+  /* Workshop list */
+  .v2-wk-list { display: flex; flex-direction: column; gap: var(--sp-4); margin-bottom: var(--sp-8); }
+  .v2-wk-item {
+    display: flex; align-items: center; gap: var(--sp-4);
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--radius-md); padding: var(--sp-4);
+    transition: background .25s;
+  }
+  .v2-wk-item:hover { background: rgba(255,111,0,.15); border-color: rgba(255,111,0,.3); }
+  .v2-wk-date {
+    background: var(--color-accent); color: #fff;
+    border-radius: 10px; padding: var(--sp-2) var(--sp-3);
+    text-align: center; min-width: 50px; flex-shrink: 0;
+  }
+  .v2-wk-date strong { display: block; font-size: 1.25rem; font-weight: 900; line-height: 1; }
+  .v2-wk-date span { font-size: .7rem; text-transform: uppercase; opacity: .85; }
+  .v2-wk-info strong { display: block; font-size: .95rem; font-weight: 700; }
+  .v2-wk-info span { font-size: .8rem; color: rgba(255,255,255,.45); }
+
+  @media(max-width: 899px) {
+    .v2-split { grid-template-columns: 1fr; }
+    .v2-split-img { min-height: 260px; }
+    .v2-split-content { padding: var(--sp-10) var(--sp-6); }
+  }
+
+  /* ── MEMBERSHIP GLASSMORPHISM ── */
+  .v2-membership {
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+    position: relative; overflow: hidden;
+    padding: var(--sp-20) var(--sp-6);
+  }
+  .v2-membership-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+  }
+  .v2-membership-blob-1 { width: 500px; height: 500px; background: rgba(255,111,0,.15); top: -100px; right: -100px; }
+  .v2-membership-blob-2 { width: 400px; height: 400px; background: rgba(255,111,0,.08); bottom: -80px; left: -60px; }
+  .v2-plans { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+  .v2-plan {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(16px);
+    border-radius: 24px; padding: var(--sp-8);
+    transition: all .3s; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .v2-plan:hover { background: rgba(255,255,255,.09); transform: translateY(-6px); }
+  .v2-plan.popular {
+    background: rgba(255,111,0,.15);
+    border-color: rgba(255,111,0,.5);
+    box-shadow: 0 0 40px rgba(255,111,0,.2);
+  }
+  .v2-plan-badge {
+    position: absolute; top: var(--sp-5); right: var(--sp-5);
+    background: var(--color-accent); color: #fff; font-size: .7rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .v2-plan-name { font-size: .8125rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: .1em; margin-bottom: var(--sp-4); }
+  .v2-plan-price { font-size: 3.5rem; font-weight: 900; font-family: var(--font-head); line-height: 1; color: #fff; margin-bottom: var(--sp-2); }
+  .v2-plan-price sup { font-size: 1.5rem; vertical-align: top; margin-top: .5rem; }
+  .v2-plan-period { font-size: .875rem; color: rgba(255,255,255,.45); margin-bottom: var(--sp-6); }
+  .v2-plan-features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+  .v2-plan-features li { display: flex; align-items: center; gap: var(--sp-3); font-size: .9rem; color: rgba(255,255,255,.8); }
+  .v2-plan-features li i { color: var(--color-accent); font-size: .875rem; flex-shrink: 0; }
+  .v2-plan-features li.off { color: rgba(255,255,255,.3); }
+  .v2-plan-features li.off i { color: rgba(255,255,255,.2); }
+  @media(max-width:767px) { .v2-plans { grid-template-columns:1fr; } }
+  @media(min-width:640px) and (max-width:767px) { .v2-plans { grid-template-columns:1fr 1fr; } .v2-plan:last-child{grid-column:span 2} }
+
+  /* ── TESTIMONIALS MASONRY ── */
+  .v2-testimonials {
+    column-count: 3; column-gap: 24px;
+    max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-6);
+  }
+  .v2-tcard {
+    break-inside: avoid; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 20px;
+    padding: var(--sp-6); margin-bottom: 24px;
+    transition: box-shadow .3s; display: inline-block; width: 100%;
+  }
+  .v2-tcard:hover { box-shadow: var(--shadow-md); }
+  .v2-tcard-stars { color: var(--color-accent); font-size: .875rem; margin-bottom: var(--sp-3); }
+  .v2-tcard blockquote { color: var(--color-text); font-size: .9375rem; line-height: 1.7; margin-bottom: var(--sp-5); font-style: italic; }
+  .v2-tcard-author { display: flex; align-items: center; gap: var(--sp-3); }
+  .v2-tcard-author img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--color-accent); }
+  .v2-tcard-name { font-weight: 700; font-size: .9rem; }
+  .v2-tcard-role { font-size: .8rem; color: var(--color-text-muted); }
+  @media(max-width:767px) { .v2-testimonials { column-count:1; } }
+  @media(min-width:640px) and (max-width:1023px) { .v2-testimonials { column-count:2; } }
+
+  /* ── NEWSLETTER DARK ── */
+  .v2-newsletter {
+    background: var(--color-accent);
+    padding: var(--sp-16) var(--sp-6);
+    text-align: center;
+  }
+  .v2-newsletter h2 { color: #fff; font-size: clamp(1.5rem,3vw,2.25rem); font-weight: 900; margin-bottom: var(--sp-3); }
+  .v2-newsletter p { color: rgba(255,255,255,.75); margin-bottom: var(--sp-8); }
+  .v2-nl-form {
+    display: flex; gap: var(--sp-3); max-width: 500px; margin: 0 auto; flex-wrap: wrap;
+  }
+  .v2-nl-form input {
+    flex: 1; min-width: 200px; padding: var(--sp-4) var(--sp-5);
+    border-radius: var(--radius-md); border: none;
+    background: rgba(255,255,255,.15); color: #fff;
+    font-size: 1rem; outline: none;
+    backdrop-filter: blur(8px);
+  }
+  .v2-nl-form input::placeholder { color: rgba(255,255,255,.6); }
+  .v2-nl-form input:focus { background: rgba(255,255,255,.25); }
+  .v2-nl-form button {
+    background: #fff; color: var(--color-accent); font-weight: 700;
+    padding: var(--sp-4) var(--sp-7); border-radius: var(--radius-md);
+    border: none; cursor: pointer; font-size: 1rem; transition: all .25s;
+    white-space: nowrap;
+  }
+  .v2-nl-form button:hover { background: var(--color-primary); color: #fff; }
+
+  /* ── Spacer utility ── */
+  .v2-section { padding: var(--sp-20) 0; }
+  .v2-section-header { text-align: center; margin-bottom: var(--sp-12); }
+  .v2-label { display: inline-block; font-size: .75rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: .12em; margin-bottom: var(--sp-3); }
+  .v2-section-header h2 { font-size: clamp(1.75rem,3.5vw,2.5rem); font-weight: 900; margin-bottom: var(--sp-4); }
+  .v2-section-header p { color: var(--color-text-muted); font-size: 1rem; max-width: 540px; margin: 0 auto; }
+
+  /* Mobile nav drawer */
+  .nav-drawer a:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ FLOATING NAV ═══════ -->
+<header>
+  <nav class="v2-nav" id="v2Nav" aria-label="Main navigation">
+    <a class="v2-nav-brand" href="index.html" aria-label="ToolShare home">
+      <div class="v2-nav-logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+      <span class="v2-nav-name">ToolShare</span>
+    </a>
+    <ul class="v2-nav-links" role="list">
+      <li class="dropdown">
+        <a href="#" class="active" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
+        <ul class="dropdown-menu" aria-label="Home submenu">
+          <li><a href="index.html">Home 1</a></li>
+          <li><a href="index2.html" class="active">Home 2</a></li>
+        </ul>
+      </li>
+      <li><a href="pages/catalog.html">Catalog</a></li>
+      <li><a href="pages/workshops.html">Workshops</a></li>
+      <li><a href="pages/membership.html">Membership</a></li>
+      <li><a href="pages/about.html">About</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+    <div class="v2-nav-ctrls">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <i class="fa-solid fa-sun icon-sun" style="color:rgba(255,255,255,.8)" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+      </button>
+      <a href="pages/login.html" class="btn btn-ghost btn-sm hd" style="color:rgba(255,255,255,.8)">Sign In</a>
+      <a href="dashboard/user.html" class="btn btn-primary btn-sm hd">Dashboard</a>
+      <button class="hamburger v2-mob-btn icon-btn" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+        <i class="fa-solid fa-bars" style="color:rgba(255,255,255,.85)"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+    <a href="index2.html" class="active"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="pages/catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+    <a href="pages/workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+    <a href="pages/membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+    <a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="pages/contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+    <a href="dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+  </div>
+</header>
+
+<!-- ═══════ HERO ═══════ -->
+<main id="main-content">
+<section class="v2-hero" aria-labelledby="v2-hero-heading">
+  <div class="v2-hero-bg" aria-hidden="true"></div>
+  <div class="v2-hero-grid" aria-hidden="true"></div>
+  <div class="v2-hero-inner reveal">
+    <div class="v2-hero-badge" aria-label="Live status">
+      <span aria-hidden="true"></span> 500+ members borrowing tools right now
+    </div>
+    <h1 id="v2-hero-heading">
+      Borrow tools.<br><em>Build anything.</em>
+    </h1>
+    <p class="v2-hero-sub">
+      Your neighborhood tool library — 850+ professionally maintained tools, hands-on workshops, and a welcoming community workspace.
+    </p>
+    <div class="v2-hero-actions">
+      <a href="pages/catalog.html" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Browse the Catalog
+      </a>
+      <a href="pages/register.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.4)">
+        <i class="fa-solid fa-id-card" aria-hidden="true"></i> Join for $65/yr
+      </a>
+    </div>
+    <div class="v2-hero-stats" role="list">
+      <div class="v2-stat reveal" role="listitem">
+        <strong data-count="850" data-suffix="+">850+</strong>
+        <small>Tools to borrow</small>
+      </div>
+      <div class="v2-stat reveal" role="listitem">
+        <strong data-count="520" data-suffix="">520</strong>
+        <small>Active members</small>
+      </div>
+      <div class="v2-stat reveal" role="listitem">
+        <strong data-count="48" data-suffix="">48</strong>
+        <small>Workshops per year</small>
+      </div>
+      <div class="v2-stat reveal" role="listitem">
+        <strong data-count="98" data-suffix="%">98%</strong>
+        <small>Satisfaction rate</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BENTO FEATURES ═══════ -->
+<section class="v2-section" aria-labelledby="v2-features-h">
+  <div class="v2-section-header container reveal">
+    <span class="v2-label">What we offer</span>
+    <h2 id="v2-features-h">A smarter way to tackle any project</h2>
+    <p>Everything you need — without buying tools you'll use once.</p>
+  </div>
+  <div class="v2-bento-grid">
+    <!-- A: Big feature -->
+    <div class="bento-a v2-bento reveal">
+      <div class="bento-icon" aria-hidden="true"><i class="fa-solid fa-toolbox"></i></div>
+      <div class="bento-tag">Core feature</div>
+      <div class="bento-h2">850+ Tools, Ready to Borrow</div>
+      <p class="bento-p">Power tools, hand tools, garden equipment, welding gear, ladders, tile saws and more — all inspected, maintained, and ready for pickup.</p>
+      <a href="pages/catalog.html" class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);margin-top:var(--sp-6)">Browse Catalog <i class="fa-solid fa-arrow-right"></i></a>
+      <span class="bento-num" aria-hidden="true">850</span>
+    </div>
+    <!-- B -->
+    <div class="bento-b v2-bento reveal">
+      <div class="bento-icon" aria-hidden="true"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="bento-tag">Online</div>
+      <div class="bento-h2">Reserve in 60 Seconds</div>
+      <p class="bento-p">Check availability, reserve online, pick up during open hours. No waiting, no surprises.</p>
+    </div>
+    <!-- C -->
+    <div class="bento-c v2-bento reveal">
+      <div class="bento-icon" style="color:var(--color-accent)" aria-hidden="true"><i class="fa-solid fa-recycle"></i></div>
+      <div class="bento-tag" style="color:var(--color-text-muted)">Eco</div>
+      <div class="bento-h2" style="color:var(--color-primary)">Share, Don't Buy</div>
+      <p class="bento-p" style="color:var(--color-text-muted)">Reduce waste. Borrow what you need, return when done.</p>
+    </div>
+    <!-- D: Full-width image -->
+    <div class="bento-d v2-bento reveal">
+      <img src="https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=900&h=300&fit=crop&q=80" alt="Community workshop hands-on class" loading="lazy"/>
+      <div class="bento-d-overlay">
+        <div>
+          <div class="bento-tag" style="color:var(--color-accent-light)">Community</div>
+          <div class="bento-h2" style="color:#fff;font-size:1.25rem">Hands-on workshops every week</div>
+        </div>
+      </div>
+    </div>
+    <!-- E -->
+    <div class="bento-e v2-bento reveal">
+      <div class="bento-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="bento-tag">Covered</div>
+      <div class="bento-h2">Basic Insurance Included</div>
+      <p class="bento-p">Every borrowing includes basic tool insurance so you can work with confidence.</p>
+    </div>
+    <!-- F -->
+    <div class="bento-f v2-bento reveal">
+      <div class="bento-icon" aria-hidden="true"><i class="fa-solid fa-people-group"></i></div>
+      <div class="bento-tag">Community</div>
+      <div class="bento-h2">60+ Expert Volunteers</div>
+      <p class="bento-p">Get advice, tips, and hands-on help from seasoned craftspeople in the community.</p>
+    </div>
+    <!-- G -->
+    <div class="bento-g v2-bento reveal">
+      <div class="bento-icon" style="color:var(--color-accent)" aria-hidden="true"><i class="fa-solid fa-warehouse"></i></div>
+      <div class="bento-tag" style="color:var(--color-text-muted)">Workspace</div>
+      <div class="bento-h2">Full Workshop Access</div>
+      <p class="bento-p">Use our benches, fixed machinery, and workspace as part of your membership.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HORIZONTAL TOOL SCROLL ═══════ -->
+<section class="v2-section" style="padding-bottom:0" aria-labelledby="v2-tools-h">
+  <div class="v2-section-header container reveal">
+    <span class="v2-label">Popular this week</span>
+    <h2 id="v2-tools-h">Most-Borrowed Tools</h2>
+    <p>Freshly maintained and ready for your next project.</p>
+  </div>
+  <div class="v2-tools-scroll" role="list" aria-label="Tool carousel">
+    <div class="v2-tool-card reveal" role="listitem">
+      <img src="assets/images/Self-Leveling Laser.jpg" alt="DeWalt 20V Drill" loading="lazy"/>
+      <div class="v2-tool-card-body">
+        <div class="v2-tool-cat">Power Tools</div>
+        <div class="v2-tool-name">DeWalt 20V Cordless Drill</div>
+        <div class="v2-tool-row">
+          <span class="card__badge badge-available">Available</span>
+          <a href="catalog.html" class="btn btn-primary btn-sm">Reserve</a>
+        </div>
+      </div>
+    </div>
+    <div class="v2-tool-card reveal" role="listitem">
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=220&fit=crop" alt="Circular Saw" loading="lazy"/>
+      <div class="v2-tool-card-body">
+        <div class="v2-tool-cat">Power Tools</div>
+        <div class="v2-tool-name">Makita Circular Saw 7¼"</div>
+        <div class="v2-tool-row">
+          <span class="card__badge badge-available">Available</span>
+          <a href="pages/catalog.html" class="btn btn-primary btn-sm">Reserve</a>
+        </div>
+      </div>
+    </div>
+    <div class="v2-tool-card reveal" role="listitem">
+      <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=220&fit=crop" alt="Pressure Washer" loading="lazy"/>
+      <div class="v2-tool-card-body">
+        <div class="v2-tool-cat">Outdoor</div>
+        <div class="v2-tool-name">3200 PSI Pressure Washer</div>
+        <div class="v2-tool-row">
+          <span class="card__badge badge-reserved">Reserved</span>
+          <button class="btn btn-secondary btn-sm" disabled>Waitlist</button>
+        </div>
+      </div>
+    </div>
+    <div class="v2-tool-card reveal" role="listitem">
+      <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400&h=220&fit=crop" alt="Belt Sander" loading="lazy"/>
+      <div class="v2-tool-card-body">
+        <div class="v2-tool-cat">Woodworking</div>
+        <div class="v2-tool-name">Belt Sander 3×21"</div>
+        <div class="v2-tool-row">
+          <span class="card__badge badge-available">Available</span>
+          <a href="pages/catalog.html" class="btn btn-primary btn-sm">Reserve</a>
+        </div>
+      </div>
+    </div>
+    <div class="v2-tool-card reveal" role="listitem">
+      <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=220&fit=crop" alt="Pipe Wrench" loading="lazy"/>
+      <div class="v2-tool-card-body">
+        <div class="v2-tool-cat">Plumbing</div>
+        <div class="v2-tool-name">Heavy-Duty Pipe Wrench Set</div>
+        <div class="v2-tool-row">
+          <span class="card__badge badge-available">Available</span>
+          <a href="pages/catalog.html" class="btn btn-primary btn-sm">Reserve</a>
+        </div>
+      </div>
+    </div>
+    <div class="v2-tool-card" role="listitem" style="background:var(--color-accent);border:none;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:var(--sp-4);padding:var(--sp-8);text-align:center">
+      <i class="fa-solid fa-toolbox" style="font-size:2rem;color:#fff" aria-hidden="true"></i>
+      <p style="color:#fff;font-weight:700;margin:0">850+ more tools in the catalog</p>
+      <a href="pages/catalog.html" class="btn btn-sm" style="background:#fff;color:var(--color-accent);font-weight:700">View All</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WORKSHOPS SPLIT ═══════ -->
+<section class="v2-section" aria-labelledby="v2-wk-h">
+  <div class="container">
+    <div class="v2-split reveal">
+      <div class="v2-split-img">
+        <img src="https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=800&h=600&fit=crop&q=80" alt="Woodworking workshop session" loading="lazy"/>
+      </div>
+      <div class="v2-split-content">
+        <div class="v2-split-label">Learn &amp; create</div>
+        <h2 id="v2-wk-h">Hands-on workshops for every skill level</h2>
+        <p>From basic home repairs to advanced woodworking — taught by community experts. All materials included.</p>
+        <div class="v2-wk-list" role="list">
+          <div class="v2-wk-item reveal" role="listitem">
+            <div class="v2-wk-date"><strong>5</strong><span>Apr</span></div>
+            <div class="v2-wk-info"><strong>Intro to Woodworking</strong><span>10am · 8 spots left · James K.</span></div>
+          </div>
+          <div class="v2-wk-item reveal" role="listitem">
+            <div class="v2-wk-date"><strong>12</strong><span>Apr</span></div>
+            <div class="v2-wk-info"><strong>Home Plumbing Basics</strong><span>2pm · 12 spots left · Maria S.</span></div>
+          </div>
+          <div class="v2-wk-item reveal" role="listitem">
+            <div class="v2-wk-date"><strong>19</strong><span>Apr</span></div>
+            <div class="v2-wk-info"><strong>Basic Home Electrical</strong><span>10am · 5 spots left · D. Reeves</span></div>
+          </div>
+        </div>
+        <a href="pages/workshops.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> View Full Calendar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MEMBERSHIP ═══════ -->
+<section class="v2-membership" aria-labelledby="v2-plans-h">
+  <div class="v2-membership-blob v2-membership-blob-1" aria-hidden="true"></div>
+  <div class="v2-membership-blob v2-membership-blob-2" aria-hidden="true"></div>
+  <div class="v2-section-header reveal" style="position:relative;z-index:1">
+    <span class="v2-label">Pricing</span>
+    <h2 id="v2-plans-h" style="color:#fff">Simple, community pricing</h2>
+    <p style="color:rgba(255,255,255,.55)">One annual fee. Unlimited access. Cancel anytime.</p>
+  </div>
+  <div class="v2-plans">
+    <div class="v2-plan reveal">
+      <div class="v2-plan-name">Basic</div>
+      <div class="v2-plan-price"><sup>$</sup>45</div>
+      <div class="v2-plan-period">per year · individual</div>
+      <ul class="v2-plan-features">
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Borrow up to 2 tools at once</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> 14-day loan periods</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Basic tool insurance</li>
+        <li class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Workshop discounts</li>
+        <li class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Workspace access</li>
+      </ul>
+      <a href="pages/register.html" class="btn btn-outline w-full" style="color:#fff;border-color:rgba(255,255,255,.3)">Get Basic</a>
+    </div>
+    <div class="v2-plan popular reveal">
+      <div class="v2-plan-badge">Most Popular</div>
+      <div class="v2-plan-name">Standard</div>
+      <div class="v2-plan-price"><sup>$</sup>65</div>
+      <div class="v2-plan-period">per year · individual</div>
+      <ul class="v2-plan-features">
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Borrow up to 4 tools at once</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> 21-day loan periods</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Basic tool insurance</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> 10% workshop discount</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Community workspace access</li>
+      </ul>
+      <a href="pages/register.html" class="btn btn-primary w-full">Get Standard</a>
+    </div>
+    <div class="v2-plan reveal">
+      <div class="v2-plan-name">Family</div>
+      <div class="v2-plan-price"><sup>$</sup>95</div>
+      <div class="v2-plan-period">per year · up to 4 people</div>
+      <ul class="v2-plan-features">
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Borrow up to 6 tools at once</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> 28-day loan periods</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Full tool insurance</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Free workshops included</li>
+        <li><i class="fa-solid fa-check" aria-hidden="true"></i> Priority reservations</li>
+      </ul>
+      <a href="pages/register.html" class="btn btn-outline w-full" style="color:#fff;border-color:rgba(255,255,255,.3)">Get Family</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ TESTIMONIALS MASONRY ═══════ -->
+<section class="v2-section" aria-labelledby="v2-reviews-h">
+  <div class="v2-section-header container reveal">
+    <span class="v2-label">Community love</span>
+    <h2 id="v2-reviews-h">Real members, real projects</h2>
+  </div>
+  <div class="v2-testimonials" role="list">
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"Renovated my entire bathroom using ToolShare tools. Saved over $800 in equipment rental. Staff is incredibly helpful!"</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=12" alt="Sarah M."/>
+        <div><div class="v2-tcard-name">Sarah M.</div><div class="v2-tcard-role">Member since 2022</div></div>
+      </div>
+    </div>
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"Best kept secret in the neighborhood. Why buy a tile saw you'll use once? Just borrow it here. The community is super welcoming too."</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=47" alt="Diana L."/>
+        <div><div class="v2-tcard-name">Diana L.</div><div class="v2-tcard-role">Member since 2023</div></div>
+      </div>
+    </div>
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"The woodworking workshops changed my life. Went from zero skills to building garden furniture in three months!"</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=33" alt="Tom R."/>
+        <div><div class="v2-tcard-name">Tom R.</div><div class="v2-tcard-role">Member since 2021</div></div>
+      </div>
+    </div>
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"The Family plan is unbeatable value. My wife and I both use it constantly for our home renovation. Couldn't be happier."</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=11" alt="Mike P."/>
+        <div><div class="v2-tcard-name">Mike P.</div><div class="v2-tcard-role">Member since 2020</div></div>
+      </div>
+    </div>
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="4 stars">★★★★★</div>
+      <blockquote>"I was skeptical at first, but the Basic plan paid for itself on the first borrow. Now I'm a Standard member and love every visit."</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=25" alt="Elena K."/>
+        <div><div class="v2-tcard-name">Elena K.</div><div class="v2-tcard-role">Member since 2023</div></div>
+      </div>
+    </div>
+    <div class="v2-tcard reveal" role="listitem">
+      <div class="v2-tcard-stars" aria-label="5 stars">★★★★★</div>
+      <blockquote>"Rented a pressure washer, an edger, and a leaf blower all in the same week. The whole process was smooth and the tools were in great shape."</blockquote>
+      <div class="v2-tcard-author">
+        <img src="https://i.pravatar.cc/40?img=55" alt="James O."/>
+        <div><div class="v2-tcard-name">James O.</div><div class="v2-tcard-role">Member since 2022</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ NEWSLETTER ═══════ -->
+<div class="v2-newsletter" aria-labelledby="v2-nl-h">
+  <h2 id="v2-nl-h" class="reveal">Get workshops &amp; new tools in your inbox</h2>
+  <p class="reveal">No spam. Unsubscribe anytime.</p>
+  <form class="v2-nl-form reveal" id="v2NlForm" aria-label="Newsletter signup">
+    <label for="v2NlEmail" class="sr-only">Email address</label>
+    <input type="email" id="v2NlEmail" name="email" placeholder="your@email.com" required aria-required="true" autocomplete="email"/>
+    <button type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+  </form>
+</div>
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
+      <div class="footer__brand">
+        <a class="navbar__brand" href="index.html" aria-label="ToolShare Home">
+          <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+          <div>
+            <div class="navbar__name" style="color:#fff">ToolShare</div>
+            <div class="navbar__tagline">Community Workshop</div>
+          </div>
+        </a>
+        <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
+        <div class="social-links" style="margin-top:var(--sp-5)">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer__links">
+          <li><a href="pages/catalog.html">Tool Catalog</a></li>
+          <li><a href="pages/workshops.html">Workshops</a></li>
+          <li><a href="pages/membership.html">Membership</a></li>
+          <li><a href="pages/about.html">About Us</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <ul class="footer__links">
+          <li><a href="dashboard/user.html">My Dashboard</a></li>
+          <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
+          <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
+          <li><a href="pages/workshops.html">Book Workshop</a></li>
+          <li><a href="#">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer__links">
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
+          <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
+      <p><a href="#" style="color:rgba(255,255,255,.4)">Privacy Policy</a> · <a href="#" style="color:rgba(255,255,255,.4)">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" aria-live="polite"></div>
+<script src="assets/js/main.js"></script>
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('v2Nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    // Fix icon colors after scroll
+    const sunIcon = nav.querySelector('.icon-sun');
+    const signIn  = nav.querySelector('a.btn-ghost');
+    const ham     = nav.querySelector('.v2-mob-btn i');
+    const scrolled = nav.classList.contains('scrolled');
+    if (sunIcon) sunIcon.style.color = scrolled ? '' : 'rgba(255,255,255,.8)';
+    if (signIn)  signIn.style.color  = scrolled ? '' : 'rgba(255,255,255,.8)';
+    if (ham)     ham.style.color     = scrolled ? 'var(--color-text)' : 'rgba(255,255,255,.85)';
+  }, { passive: true });
+
+  // Newsletter
+  document.getElementById('v2NlForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    window.Toast?.show('Thanks! You\'re subscribed.', 'success');
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

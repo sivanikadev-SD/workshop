@@ -1,0 +1,108 @@
+/* ============================================================
+   DARK MODE – Neighborhood Tool Library
+   Applied via: [data-theme="dark"] on <html>
+   ============================================================ */
+
+[data-theme="dark"] {
+  --color-bg:          #121212;
+  --color-bg-alt:      #1E1E1E;
+  --color-surface:     #1E1E1E;
+  --color-border:      #333333;
+  --color-text:        #EEEEEE;
+  --color-text-muted:  #9E9E9E;
+  --color-text-inv:    #212121;
+  --color-primary:     #EEEEEE;
+  --color-secondary:   #BDBDBD;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.4);
+  --shadow-md:   0 4px 12px rgba(0,0,0,.5);
+  --shadow-lg:   0 8px 28px rgba(0,0,0,.6);
+}
+
+/* ── Navbar dark ── */
+[data-theme="dark"] .navbar {
+  background: #1E1E1E;
+  border-bottom-color: #333333;
+}
+
+/* ── Badge tint adjustments ── */
+[data-theme="dark"] .badge-available   { background: #1B5E20; color: #A5D6A7; }
+[data-theme="dark"] .badge-reserved    { background: #BF360C; color: #FFCCBC; }
+[data-theme="dark"] .badge-unavailable { background: #B71C1C; color: #EF9A9A; }
+[data-theme="dark"] .badge-upcoming    { background: #01579B; color: #B3E5FC; }
+
+/* ── Cards & surfaces ── */
+[data-theme="dark"] .card,
+[data-theme="dark"] .tier-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .feature-card {
+  background: #1E1E1E;
+  border-color: #333333;
+}
+
+/* ── Filter bar ── */
+[data-theme="dark"] .filter-bar { background: #1E1E1E; border-color: #333333; }
+
+/* ── Calendar ── */
+[data-theme="dark"] .calendar        { border-color: #333333; }
+[data-theme="dark"] .cal-day-name    { background: #2A2A2A; color: #9E9E9E; }
+[data-theme="dark"] .cal-day         { border-color: #2A2A2A; color: #EEEEEE; }
+[data-theme="dark"] .cal-day:hover   { background: rgba(255,111,0,.15); }
+
+/* ── Table ── */
+[data-theme="dark"] .table-wrap { background: #1E1E1E; border-color: #333333; }
+[data-theme="dark"] thead       { background: #2A2A2A; }
+[data-theme="dark"] td          { border-top-color: #333333; }
+[data-theme="dark"] tr:hover td { background: rgba(255,111,0,.06); }
+
+/* ── Form controls ── */
+[data-theme="dark"] .form-control {
+  background: #2A2A2A;
+  border-color: #444444;
+  color: #EEEEEE;
+}
+[data-theme="dark"] .form-control::placeholder { color: #757575; }
+[data-theme="dark"] .form-control:focus        { border-color: var(--color-accent); }
+
+/* ── Modal ── */
+[data-theme="dark"] .modal             { background: #1E1E1E; }
+[data-theme="dark"] .modal__close      { background: #2A2A2A; color: #9E9E9E; }
+
+/* ── Toast ── */
+[data-theme="dark"] .toast { background: #1E1E1E; border-color: #333333; }
+
+/* ── Nav drawer ── */
+[data-theme="dark"] .nav-drawer { background: #1E1E1E; border-top-color: #333333; }
+[data-theme="dark"] .nav-drawer a { border-color: #333333; color: #EEEEEE; }
+
+/* ── Heading colours ── */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 { color: #EEEEEE; }
+
+/* ── Stats banner ── */
+[data-theme="dark"] .stats-banner { background: #1E1E1E; }
+
+/* ── Section alt bg ── */
+[data-theme="dark"] .section-bg-alt { background: #1A1A1A; }
+
+/* ── Skeleton ── */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg,#2A2A2A 25%,#383838 50%,#2A2A2A 75%);
+  background-size:800px 100%;
+}
+
+/* ── Chip ── */
+[data-theme="dark"] .chip { border-color: #444; color: #9E9E9E; }
+[data-theme="dark"] .chip:hover,
+[data-theme="dark"] .chip.active { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+
+/* ── Dashboard (shared) ── */
+[data-theme="dark"] .dash-sidebar    { background: #161616; border-color: #333333; }
+[data-theme="dark"] .dash-card       { background: #1E1E1E; border-color: #333333; }
+[data-theme="dark"] .dash-top        { background: #1A1A1A; border-color: #333333; }
+
+/* ── Theme toggle icon ── */
+#themeToggle .icon-moon { display: none; }
+[data-theme="dark"] #themeToggle .icon-sun  { display: none; }
+[data-theme="dark"] #themeToggle .icon-moon { display: inline; }
