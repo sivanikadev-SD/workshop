@@ -26,7 +26,7 @@
 
     /* ── Left brand panel ── */
     .auth-panel {
-      background: linear-gradient(145deg, #1a1a1a 0%, #2e2e2e 60%, #1a1a1a 100%);
+      background: linear-gradient(145deg, rgba(26,26,26,0.85) 0%, rgba(46,46,46,0.4) 60%, rgba(26,26,26,0.85) 100%), url('../assets/images/hero.jpg') center/cover no-repeat;
       display: flex; flex-direction: column;
       padding: var(--sp-10) var(--sp-12);
       position: relative; overflow: hidden;
@@ -194,26 +194,7 @@
       </a>
     </div>
 
-    <div class="auth-panel-content">
-      <h2>Your community.<br><span>Your tools.</span><br>Your skills.</h2>
-      <p>Join 520+ neighbors borrowing tools, attending workshops, and building things together.</p>
-      <div class="auth-panel-stats">
-        <div class="auth-stat"><strong>850+</strong><span>Tools to borrow</span></div>
-        <div class="auth-stat"><strong>48</strong><span>Workshops/year</span></div>
-        <div class="auth-stat"><strong>$65</strong><span>Membership/year</span></div>
-      </div>
-    </div>
 
-    <div class="auth-testimonial">
-      <blockquote>"Renovated my entire bathroom using ToolShare tools. Saved over $800 in equipment rental. The staff is incredibly helpful!"</blockquote>
-      <div class="auth-testimonial-author">
-        <img src="https://i.pravatar.cc/40?img=12" alt="Portrait of Sarah M."/>
-        <div>
-          <strong>Sarah M.</strong>
-          <span>Member since 2022</span>
-        </div>
-      </div>
-    </div>
     </div>
   </aside>
 
@@ -263,7 +244,6 @@
             <label for="loginPassword" class="form-label" style="margin:0">
               Password <span class="required" aria-hidden="true">*</span>
             </label>
-            <a href="#" style="font-size:.875rem;color:var(--color-accent);font-weight:600;text-decoration:none" id="forgotLink">Forgot password?</a>
           </div>
           <div class="input-icon-wrap">
             <input
@@ -273,6 +253,7 @@
             <button type="button" class="toggle-pwd" aria-label="Show or hide password" id="toggleLoginPwd">
               <i class="fa-solid fa-eye" aria-hidden="true" id="loginEyeIcon"></i>
             </button>
+            <a href="#" style="font-size:.875rem;color:var(--color-accent);font-weight:600;text-decoration:none" id="forgotLink">Forgot password?</a>
           </div>
           <span class="form-error" role="alert"></span>
         </div>

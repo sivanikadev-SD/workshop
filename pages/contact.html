@@ -1,291 +1,424 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" dir="ltr">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us – ToolShare Community Workshop</title>
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
-  <meta name="description" content="Get in touch with ToolShare. Visit us, call, or send a message. Find our location, hours, and contact form."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
-  <link rel="stylesheet" href="../assets/css/dark-mode.css"/>
-  <link rel="stylesheet" href="../assets/css/rtl.css"/>
+  <meta name="description"
+    content="Get in touch with ToolShare. Visit us, call, or send a message. Find our location, hours, and contact form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
   <style>
-    .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:var(--sp-12);align-items:start}
-    .contact-info-card{background:linear-gradient(135deg,var(--color-primary),var(--color-secondary));border-radius:var(--radius-xl);padding:var(--sp-8);color:#fff}
-    .contact-info-card h3{color:#fff;margin-bottom:var(--sp-6)}
-    .contact-info-item{display:flex;gap:var(--sp-4);align-items:flex-start;margin-bottom:var(--sp-6)}
-    .contact-info-icon{width:44px;height:44px;border-radius:var(--radius-md);background:rgba(255,111,0,.2);display:grid;place-items:center;color:var(--color-accent-light);flex-shrink:0}
-    .contact-info-label{font-size:.8125rem;color:rgba(255,255,255,.6);margin-bottom:var(--sp-1)}
-    .contact-info-value{color:#fff;font-weight:500}
-    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2) var(--sp-6);margin-top:var(--sp-4)}
-    .hours-row{display:flex;justify-content:space-between;font-size:.875rem}
-    .hours-row .day{color:rgba(255,255,255,.7)}
-    .hours-row .time{font-weight:600;color:#fff}
-    .hours-row.closed .time{color:rgba(255,255,255,.4)}
-    .map-placeholder{height:240px;border-radius:var(--radius-lg);background:var(--color-bg-alt);border:2px dashed var(--color-border);display:grid;place-items:center;margin-top:var(--sp-6);color:var(--color-text-muted);text-align:center;gap:var(--sp-2)}
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: var(--sp-12);
+      align-items: start
+    }
+
+    .contact-info-card {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-text-muted));
+      border-radius: var(--radius-xl);
+      padding: var(--sp-8);
+      color: #fff
+    }
+
+    .contact-info-card h3 {
+      color: #fff;
+      margin-bottom: var(--sp-6)
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+      margin-bottom: var(--sp-6)
+    }
+
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 111, 0, .2);
+      display: grid;
+      place-items: center;
+      color: var(--color-accent-light);
+      flex-shrink: 0
+    }
+
+    .contact-info-label {
+      font-size: .8125rem;
+      color: rgba(255, 255, 255, .6);
+      margin-bottom: var(--sp-1)
+    }
+
+    .contact-info-value {
+      color: #fff;
+      font-weight: 500
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-2) var(--sp-6);
+      margin-top: var(--sp-4)
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .875rem
+    }
+
+    .hours-row .day {
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .hours-row .time {
+      font-weight: 600;
+      color: #fff
+    }
+
+    .hours-row.closed .time {
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .map-placeholder {
+      height: 240px;
+      border-radius: var(--radius-lg);
+      background: var(--color-bg-alt);
+      border: 2px dashed var(--color-border);
+      display: grid;
+      place-items: center;
+      margin-top: var(--sp-6);
+      color: var(--color-text-muted);
+      text-align: center;
+      gap: var(--sp-2)
+    }
+
     /* TODO: Replace with Google Maps iframe embed */
-    @media(max-width:1023px){.contact-grid{grid-template-columns:1fr}}
+    @media(max-width:1023px) {
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+    }
   </style>
 </head>
+
 <body>
-<header role="banner">
-  <nav class="navbar" aria-label="Main navigation">
-    <div class="navbar__inner">
-      <a class="navbar__brand" href="../index.html"><div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div><div><div class="navbar__name">ToolShare</div><div class="navbar__tagline">Community Workshop</div></div></a>
-      <ul class="nav-links" role="list">
-        <li class="dropdown">
-          <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
-          <ul class="dropdown-menu" aria-label="Home submenu">
-            <li><a href="../index.html">Home 1</a></li>
-            <li><a href="../index2.html">Home 2</a></li>
-          </ul>
-        </li>
-        <li><a href="catalog.html">Tool Catalog</a></li>
-        <li><a href="workshops.html">Workshops</a></li><li><a href="membership.html">Membership</a></li>
-        <li><a href="about.html">About</a></li><li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-      <div class="nav-ctrls">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
-        <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL"><i class="fa-solid fa-right-left"></i></button>
-        <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a>
-        <a href="../dashboard/user.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-gauge"></i>Dashboard</a>
-        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu"><span></span><span></span><span></span></button>
-      </div>
-    </div>
-  </nav>
-  <div class="nav-drawer" id="navDrawer" role="navigation">
-    <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
-    <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
-    <a href="catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
-    <a href="workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
-    <a href="membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
-    <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
-    <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
-    <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
-    <a href="../dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
-  </div>
-</header>
-
-<main id="main-content">
-  <section class="page-hero" style="--page-hero-bg:url('https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1400&h=500&fit=crop&q=80')"
-    aria-labelledby="contact-heading">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center">
-        <a href="../index.html">Home</a>
-        <span class="breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
-        <span aria-current="page">Contact</span>
-      </nav>
-      <h1><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i> Get in Touch</h1>
-      <p>We'd love to hear from you. Visit, call, or send a message — we typically respond within 24 hours.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="reveal-left">
-          <div class="contact-info-card">
-            <h3><i class="fa-solid fa-location-dot"></i> Find Us</h3>
-            <div class="contact-info-item">
-              <div class="contact-info-icon"><i class="fa-solid fa-map-pin"></i></div>
-              <div><div class="contact-info-label">Address</div><div class="contact-info-value">123 Main Street<br>Anytown, ST 00000</div></div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
-              <div><div class="contact-info-label">Phone</div><div class="contact-info-value"><a href="tel:+15555000000" style="color:#fff">+1 (555) 500-0000</a></div></div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div><div class="contact-info-label">Email</div><div class="contact-info-value"><a href="mailto:hello@toolshare.org" style="color:#fff">hello@toolshare.org</a></div></div>
-            </div>
-            <div class="divider" style="background:rgba(255,255,255,.15)"></div>
-            <h3 style="margin-bottom:var(--sp-4)"><i class="fa-solid fa-clock"></i> Hours</h3>
-            <div class="hours-grid">
-              <div class="hours-row"><span class="day">Tuesday</span><span class="time">9am–6pm</span></div>
-              <div class="hours-row"><span class="day">Wednesday</span><span class="time">9am–6pm</span></div>
-              <div class="hours-row"><span class="day">Thursday</span><span class="time">9am–8pm</span></div>
-              <div class="hours-row"><span class="day">Friday</span><span class="time">9am–6pm</span></div>
-              <div class="hours-row"><span class="day">Saturday</span><span class="time">9am–5pm</span></div>
-              <div class="hours-row"><span class="day">Sunday</span><span class="time">10am–3pm</span></div>
-              <div class="hours-row closed"><span class="day">Monday</span><span class="time">Closed</span></div>
-            </div>
-          </div>
-          <!-- Map Placeholder -->
-          <div class="map-placeholder" role="img" aria-label="Map placeholder — Google Maps will load here">
-            <i class="fa-solid fa-map-location-dot" style="font-size:2.5rem;color:var(--color-accent)"></i>
-            <div>
-              <strong style="display:block;margin-bottom:var(--sp-1)">Interactive Map</strong>
-              <span style="font-size:.8125rem"><!-- TODO: Replace with Google Maps iframe --><br>123 Main Street, Anytown ST</span>
-            </div>
-            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
-              <i class="fa-solid fa-diamond-turn-right"></i>Get Directions
-            </a>
-          </div>
-        </div>
-
-        <!-- Contact Form -->
-        <div class="reveal-right">
-          <div class="card" style="padding:var(--sp-8)">
-            <h2 style="margin-bottom:var(--sp-2)">Send us a Message</h2>
-            <p style="color:var(--color-text-muted);margin-bottom:var(--sp-6)">For tool reservations, use the <a href="catalog.html">Tool Catalog</a>. This form is for general inquiries, volunteer interest, and donations.</p>
-            <!-- TODO: Replace action with Formspree/Netlify Forms endpoint -->
-            <form id="contactForm" data-validate action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-label="Contact form">
-              <div class="grid grid-2" style="gap:var(--sp-4)">
-                <div class="form-group">
-                  <label for="ctFname" class="form-label">First Name <span class="required" aria-hidden="true">*</span></label>
-                  <input type="text" id="ctFname" name="fname" class="form-control" placeholder="Jane" data-rules="required" aria-required="true"/>
-                  <span class="form-error" role="alert"></span>
-                </div>
-                <div class="form-group">
-                  <label for="ctLname" class="form-label">Last Name <span class="required" aria-hidden="true">*</span></label>
-                  <input type="text" id="ctLname" name="lname" class="form-control" placeholder="Smith" data-rules="required" aria-required="true"/>
-                  <span class="form-error" role="alert"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="ctEmail" class="form-label">Email <span class="required" aria-hidden="true">*</span></label>
-                <input type="email" id="ctEmail" name="email" class="form-control" placeholder="jane@example.com" data-rules="required|email" aria-required="true" autocomplete="email"/>
-                <span class="form-error" role="alert"></span>
-              </div>
-              <div class="form-group">
-                <label for="ctPhone" class="form-label">Phone (optional)</label>
-                <input type="tel" id="ctPhone" name="phone" class="form-control" placeholder="+1 (555) 000-0000" data-rules="phone" autocomplete="tel"/>
-                <span class="form-error" role="alert"></span>
-              </div>
-              <div class="form-group">
-                <label for="ctSubject" class="form-label">Subject <span class="required" aria-hidden="true">*</span></label>
-                <select id="ctSubject" name="subject" class="form-control" data-rules="nonempty" aria-required="true">
-                  <option value="">Select a topic…</option>
-                  <option>General Inquiry</option>
-                  <option>Membership Question</option>
-                  <option>Volunteer Interest</option>
-                  <option>Tool Donation</option>
-                  <option>Workshop Proposal</option>
-                  <option>Partnership / Sponsorship</option>
-                  <option>Press / Media</option>
-                </select>
-                <span class="form-error" role="alert"></span>
-              </div>
-              <div class="form-group">
-                <label for="ctMessage" class="form-label">Message <span class="required" aria-hidden="true">*</span></label>
-                <textarea id="ctMessage" name="message" class="form-control" rows="5" placeholder="Tell us how we can help…" data-rules="required|minLength:20" aria-required="true"></textarea>
-                <span class="form-error" role="alert"></span>
-                <span class="form-hint">Minimum 20 characters.</span>
-              </div>
-              <button type="submit" class="btn btn-primary btn-lg w-full">
-                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Send Message
-              </button>
-              <p class="form-hint text-center" style="margin-top:var(--sp-3)">We typically respond within 1 business day.</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick Actions -->
-  <section class="section-sm section-bg-alt">
-    <div class="container">
-      <div class="grid grid-3" style="gap:var(--sp-4)">
-        <div class="card reveal" style="padding:var(--sp-6);text-align:center">
-          <i class="fa-solid fa-hand-holding-heart" style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
-          <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Donate a Tool</h3>
-          <p style="font-size:.875rem;color:var(--color-text-muted)">Have tools gathering dust? Donate them to grow our collection.</p>
-          <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Learn How</a>
-        </div>
-        <div class="card reveal" style="padding:var(--sp-6);text-align:center">
-          <i class="fa-solid fa-people-carry-box" style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
-          <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Volunteer</h3>
-          <p style="font-size:.875rem;color:var(--color-text-muted)">Share your skills. Volunteer as an instructor or shop assistant.</p>
-          <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Get Involved</a>
-        </div>
-        <div class="card reveal" style="padding:var(--sp-6);text-align:center">
-          <i class="fa-solid fa-building-columns" style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
-          <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Sponsor Us</h3>
-          <p style="font-size:.875rem;color:var(--color-text-muted)">Help fund tool purchases and programs through business sponsorship.</p>
-          <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Sponsor Info</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
-      <div class="footer__brand">
-        <a class="navbar__brand" href="../index.html" aria-label="ToolShare Home">
-          <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a class="navbar__brand" href="../index.html">
+          <div class="navbar__logo"><i class="fa-solid fa-wrench"></i></div>
           <div>
-            <div class="navbar__name" style="color:#fff">ToolShare</div>
+            <div class="navbar__name">ToolShare</div>
             <div class="navbar__tagline">Community Workshop</div>
           </div>
         </a>
-        <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
-        <div class="social-links" style="margin-top:var(--sp-5)">
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <ul class="footer__links">
+        <ul class="nav-links" role="list">
+          <li class="dropdown">
+            <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down"
+                style="font-size:0.75em;margin-left:4px;"></i></a>
+            <ul class="dropdown-menu" aria-label="Home submenu">
+              <li><a href="../index.html">Home 1</a></li>
+              <li><a href="../index2.html">Home 2</a></li>
+            </ul>
+          </li>
           <li><a href="catalog.html">Tool Catalog</a></li>
           <li><a href="workshops.html">Workshops</a></li>
           <li><a href="membership.html">Membership</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
+        <div class="nav-ctrls">
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i
+              class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+          <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL"><i
+              class="fa-solid fa-right-left"></i></button>
+          <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i>Sign In</a>
+          <a href="../dashboard/user.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+          <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer"
+            aria-label="Open menu"><span></span><span></span><span></span></button>
+        </div>
       </div>
-      <div>
-        <h4>Members</h4>
-        <ul class="footer__links">
-          <li><a href="dashboard/user.html">My Dashboard</a></li>
-          <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
-          <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
-          <li><a href="pages/workshops.html">Book Workshop</a></li>
-          <li><a href="#">Volunteer</a></li>
-        </ul>
+    </nav>
+    <div class="nav-drawer" id="navDrawer" role="navigation">
+      <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+      <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+      <a href="catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+      <a href="workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+      <a href="membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+      <a href="../dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero"
+      style="--page-hero-bg:url('https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1400&h=500&fit=crop&q=80')"
+      aria-labelledby="contact-heading">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb" style="justify-content:center">
+          <a href="../index.html">Home</a>
+          <span class="breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
+          <span aria-current="page">Contact</span>
+        </nav>
+        <h1><i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i> Get in Touch</h1>
+        <p>We'd love to hear from you. Visit, call, or send a message — we typically respond within 24 hours.</p>
       </div>
-      <div>
-        <h4>Contact Us</h4>
-        <ul class="footer__links">
-          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
-          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
-          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
-          <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
-        </ul>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="reveal-left">
+            <div class="contact-info-card">
+              <h3><i class="fa-solid fa-location-dot"></i> Find Us</h3>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-solid fa-map-pin"></i></div>
+                <div>
+                  <div class="contact-info-label">Address</div>
+                  <div class="contact-info-value">123 Main Street<br>Anytown, ST 00000</div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <div class="contact-info-label">Phone</div>
+                  <div class="contact-info-value"><a href="tel:+15555000000" style="color:#fff">+1 (555) 500-0000</a>
+                  </div>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <div class="contact-info-label">Email</div>
+                  <div class="contact-info-value"><a href="mailto:hello@toolshare.org"
+                      style="color:#fff">hello@toolshare.org</a></div>
+                </div>
+              </div>
+              <div class="divider" style="background:rgba(255,255,255,.15)"></div>
+              <h3 style="margin-bottom:var(--sp-4)"><i class="fa-solid fa-clock"></i> Hours</h3>
+              <div class="hours-grid">
+                <div class="hours-row"><span class="day">Tuesday</span><span class="time">9am–6pm</span></div>
+                <div class="hours-row"><span class="day">Wednesday</span><span class="time">9am–6pm</span></div>
+                <div class="hours-row"><span class="day">Thursday</span><span class="time">9am–8pm</span></div>
+                <div class="hours-row"><span class="day">Friday</span><span class="time">9am–6pm</span></div>
+                <div class="hours-row"><span class="day">Saturday</span><span class="time">9am–5pm</span></div>
+                <div class="hours-row"><span class="day">Sunday</span><span class="time">10am–3pm</span></div>
+                <div class="hours-row closed"><span class="day">Monday</span><span class="time">Closed</span></div>
+              </div>
+            </div>
+            <!-- Interactive Map -->
+            <div style="margin-top:var(--sp-6); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--color-border);">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1683935398416!5m2!1sen!2sus" 
+                width="100%" 
+                height="240" 
+                style="border:0; display:block;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Google Maps Location">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="reveal-right">
+            <div class="card" style="padding:var(--sp-8)">
+              <h2 style="margin-bottom:var(--sp-2)">Send us a Message</h2>
+              <p style="color:var(--color-text-muted);margin-bottom:var(--sp-6)">For tool reservations, use the <a
+                  href="catalog.html">Tool Catalog</a>. This form is for general inquiries, volunteer interest, and
+                donations.</p>
+              <!-- TODO: Replace action with Formspree/Netlify Forms endpoint -->
+              <form id="contactForm" data-validate action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+                aria-label="Contact form">
+                <div class="grid grid-2" style="gap:var(--sp-4)">
+                  <div class="form-group">
+                    <label for="ctFname" class="form-label">First Name <span class="required"
+                        aria-hidden="true">*</span></label>
+                    <input type="text" id="ctFname" name="fname" class="form-control" placeholder="Jane"
+                      data-rules="required" aria-required="true" />
+                    <span class="form-error" role="alert"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="ctLname" class="form-label">Last Name <span class="required"
+                        aria-hidden="true">*</span></label>
+                    <input type="text" id="ctLname" name="lname" class="form-control" placeholder="Smith"
+                      data-rules="required" aria-required="true" />
+                    <span class="form-error" role="alert"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="ctEmail" class="form-label">Email <span class="required"
+                      aria-hidden="true">*</span></label>
+                  <input type="email" id="ctEmail" name="email" class="form-control" placeholder="jane@example.com"
+                    data-rules="required|email" aria-required="true" autocomplete="email" />
+                  <span class="form-error" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ctPhone" class="form-label">Phone (optional)</label>
+                  <input type="tel" id="ctPhone" name="phone" class="form-control" placeholder="+1 (555) 000-0000"
+                    data-rules="phone" autocomplete="tel" />
+                  <span class="form-error" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ctSubject" class="form-label">Subject <span class="required"
+                      aria-hidden="true">*</span></label>
+                  <select id="ctSubject" name="subject" class="form-control" data-rules="nonempty" aria-required="true">
+                    <option value="">Select a topic…</option>
+                    <option>General Inquiry</option>
+                    <option>Membership Question</option>
+                    <option>Volunteer Interest</option>
+                    <option>Tool Donation</option>
+                    <option>Workshop Proposal</option>
+                    <option>Partnership / Sponsorship</option>
+                    <option>Press / Media</option>
+                  </select>
+                  <span class="form-error" role="alert"></span>
+                </div>
+                <div class="form-group">
+                  <label for="ctMessage" class="form-label">Message <span class="required"
+                      aria-hidden="true">*</span></label>
+                  <textarea id="ctMessage" name="message" class="form-control" rows="5"
+                    placeholder="Tell us how we can help…" data-rules="required|minLength:20"
+                    aria-required="true"></textarea>
+                  <span class="form-error" role="alert"></span>
+                  <span class="form-hint">Minimum 20 characters.</span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-full">
+                  <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Send Message
+                </button>
+                <p class="form-hint text-center" style="margin-top:var(--sp-3)">We typically respond within 1 business
+                  day.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="section-sm section-bg-alt">
+      <div class="container">
+        <div class="grid grid-3" style="gap:var(--sp-4)">
+          <div class="card reveal" style="padding:var(--sp-6);text-align:center">
+            <i class="fa-solid fa-hand-holding-heart"
+              style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
+            <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Donate a Tool</h3>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">Have tools gathering dust? Donate them to grow
+              our collection.</p>
+            <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Learn How</a>
+          </div>
+          <div class="card reveal" style="padding:var(--sp-6);text-align:center">
+            <i class="fa-solid fa-people-carry-box"
+              style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
+            <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Volunteer</h3>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">Share your skills. Volunteer as an instructor or
+              shop assistant.</p>
+            <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Get Involved</a>
+          </div>
+          <div class="card reveal" style="padding:var(--sp-6);text-align:center">
+            <i class="fa-solid fa-building-columns"
+              style="font-size:2rem;color:var(--color-accent);margin-bottom:var(--sp-3)"></i>
+            <h3 style="font-size:1rem;margin-bottom:var(--sp-2)">Sponsor Us</h3>
+            <p style="font-size:.875rem;color:var(--color-text-muted)">Help fund tool purchases and programs through
+              business sponsorship.</p>
+            <a href="#" class="btn btn-ghost btn-sm" style="margin-top:var(--sp-3)">Sponsor Info</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="grid footer__grid" style="grid-template-columns:1.5fr 1fr 1fr 1fr;gap:var(--sp-8)">
+        <div class="footer__brand">
+          <a class="navbar__brand" href="../index.html" aria-label="ToolShare Home">
+            <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+            <div>
+              <div class="navbar__name" style="color:#fff">ToolShare</div>
+              <div class="navbar__tagline">Community Workshop</div>
+            </div>
+          </a>
+          <p>A nonprofit community tool library. Borrow, learn, and build together.</p>
+          <div class="social-links" style="margin-top:var(--sp-5)">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Nextdoor"><i class="fa-solid fa-house-chimney" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Tool Catalog</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Members</h4>
+          <ul class="footer__links">
+            <li><a href="dashboard/user.html">My Dashboard</a></li>
+            <li><a href="dashboard/user.html#reservations">My Reservations</a></li>
+            <li><a href="dashboard/user.html#dues">Pay Dues</a></li>
+            <li><a href="pages/workshops.html">Book Workshop</a></li>
+            <li><a href="#">Volunteer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <ul class="footer__links">
+            <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 123 Main St, Your City</li>
+            <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +1 (555) TOOLSHARE</li>
+            <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hello@toolshare.org</li>
+            <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue–Sat: 9am–6pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
+        <p><a href="#" style="color:var(--color-text)">Privacy Policy</a> · <a href="#"
+            style="color:var(--color-text)">Terms of Use</a></p>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>&copy; 2026 ToolShare Community Workshop. All rights reserved.</p>
-      <p><a href="#" style="color:rgba(255,255,255,.4)">Privacy Policy</a> · <a href="#" style="color:rgba(255,255,255,.4)">Terms of Use</a></p>
-    </div>
-  </div>
-</footer>
-<div class="toast-container" aria-live="polite"></div>
-<script src="../assets/js/main.js"></script>
-<script>
-  document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // TODO: Hook into Formspree via fetch() for AJAX submission
-    const Toast = { container: document.querySelector('.toast-container'),
-      show(msg, type) {
-        const t = document.createElement('div'); t.className = `toast ${type}`;
-        t.innerHTML = `<i class="fa-solid fa-circle-check toast-icon"></i><span class="toast-msg">${msg}</span>`;
-        this.container.appendChild(t); setTimeout(() => t.remove(), 5000);
-      }
-    };
-    Toast.show("Message sent! We'll reply within 1 business day.", 'success');
-    this.reset();
-  });
-</script>
+  </footer>
+  <div class="toast-container" aria-live="polite"></div>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+      e.preventDefault();
+      // TODO: Hook into Formspree via fetch() for AJAX submission
+      const Toast = {
+        container: document.querySelector('.toast-container'),
+        show(msg, type) {
+          const t = document.createElement('div'); t.className = `toast ${type}`;
+          t.innerHTML = `<i class="fa-solid fa-circle-check toast-icon"></i><span class="toast-msg">${msg}</span>`;
+          this.container.appendChild(t); setTimeout(() => t.remove(), 5000);
+        }
+      };
+      Toast.show("Message sent! We'll reply within 1 business day.", 'success');
+      this.reset();
+    });
+  </script>
 </body>
+
 </html>
