@@ -180,7 +180,8 @@ p {
 /* ── Grid ── */
 .grid {
   display: grid;
-  gap: var(--sp-6)
+  gap: var(--sp-6);
+  align-items: stretch
 }
 
 .grid-2 {
@@ -188,11 +189,21 @@ p {
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr))
 }
 
 .grid-4 {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr))
+}
+
+/* Force equal-column grids at full desktop widths */
+@media(min-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr) }
+  .grid-4 { grid-template-columns: repeat(4, 1fr) }
+}
+@media(min-width: 640px) and (max-width: 1023px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr) }
+  .grid-4 { grid-template-columns: repeat(2, 1fr) }
 }
 
 /* ── Flex Utils ── */
@@ -326,6 +337,9 @@ p {
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: all var(--transition);
+  /* Equal height cards in a grid row */
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -336,11 +350,15 @@ p {
 .card__img {
   width: 100%;
   height: 220px;
-  object-fit: cover
+  object-fit: cover;
+  flex-shrink: 0
 }
 
 .card__body {
-  padding: var(--sp-6)
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  flex: 1
 }
 
 .card__badge {
@@ -384,10 +402,18 @@ p {
   margin-bottom: var(--sp-4)
 }
 
+.card__meta {
+  font-size: .875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-3)
+}
+
 .card__actions {
   display: flex;
   gap: var(--sp-2);
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--sp-4)
 }
 
 /* ╔══════════════════════════════╗
@@ -1203,23 +1229,27 @@ header {
    ║  FOOTER                      ║
    ╚══════════════════════════════╝ */
 .footer {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: #1a1a1a;
+  color: rgba(255, 255, 255, .85);
   padding: var(--sp-16) 0 var(--sp-6)
 }
+
+/* Brand inside footer always stays light (footer is dark-by-default) */
+.footer .navbar__name   { color: #fff; }
+.footer .navbar__tagline { color: rgba(255, 255, 255, .5); }
 
 .footer__grid {
   grid-template-columns: 1.5fr 1fr 1fr 1fr
 }
 
 .footer h4 {
-  color: var(--color-text);
+  color: #fff;
   margin-bottom: var(--sp-5);
   font-size: 1rem
 }
 
 .footer__brand p {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, .55);
   font-size: .9rem;
   margin-top: var(--sp-3);
   max-width: 260px
@@ -1232,7 +1262,7 @@ header {
 }
 
 .footer__links a {
-  color: var(--color-text);
+  color: rgba(255, 255, 255, .7);
   font-size: .9375rem;
   transition: color var(--transition)
 }
@@ -1241,8 +1271,16 @@ header {
   color: var(--color-accent)
 }
 
+.footer__links li {
+  color: rgba(255, 255, 255, .6);
+  font-size: .9375rem;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2)
+}
+
 .footer__bottom {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, .12);
   margin-top: var(--sp-12);
   padding-top: var(--sp-6);
   display: flex;
@@ -1253,9 +1291,18 @@ header {
 }
 
 .footer__bottom p {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, .45);
   font-size: .875rem;
   margin: 0
+}
+
+.footer__bottom a {
+  color: rgba(255, 255, 255, .55);
+  transition: color var(--transition)
+}
+
+.footer__bottom a:hover {
+  color: var(--color-accent)
 }
 
 .social-links {
@@ -1267,10 +1314,10 @@ header {
   width: 38px;
   height: 38px;
   border-radius: var(--radius-md);
-  background: var(--color-bg-alt);
+  background: rgba(255, 255, 255, .08);
   display: grid;
   place-items: center;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, .7);
   transition: all var(--transition);
 }
 
