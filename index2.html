@@ -805,25 +805,25 @@
       }
     }
 
-    /* ── TESTIMONIALS MASONRY ── */
+    /* ── TESTIMONIALS GRID (equal heights) ── */
     .v2-testimonials {
-      column-count: 3;
-      column-gap: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--sp-6);
     }
 
     .v2-tcard {
-      break-inside: avoid;
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 20px;
       padding: var(--sp-6);
-      margin-bottom: 24px;
       transition: box-shadow .3s;
-      display: inline-block;
-      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .v2-tcard:hover {
@@ -842,12 +842,14 @@
       line-height: 1.7;
       margin-bottom: var(--sp-5);
       font-style: italic;
+      flex: 1;
     }
 
     .v2-tcard-author {
       display: flex;
       align-items: center;
       gap: var(--sp-3);
+      margin-top: auto;
     }
 
     .v2-tcard-author img {
@@ -867,15 +869,15 @@
       color: var(--color-text-muted);
     }
 
-    @media(max-width:767px) {
+    @media(max-width:639px) {
       .v2-testimonials {
-        column-count: 1;
+        grid-template-columns: 1fr;
       }
     }
 
     @media(min-width:640px) and (max-width:1023px) {
       .v2-testimonials {
-        column-count: 2;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -928,7 +930,7 @@
     }
 
     .v2-nl-form button {
-      background: #fff;
+      background:var(--color-surface);
       color: var(--color-accent);
       font-weight: 700;
       padding: var(--sp-4) var(--sp-7);
@@ -938,11 +940,12 @@
       font-size: 1rem;
       transition: all .25s;
       white-space: nowrap;
+      padding: 6px;
     }
 
     .v2-nl-form button:hover {
       background: var(--color-primary);
-      color: #fff;
+      color: var(--color-accent);
     }
 
     /* ── Spacer utility ── */
