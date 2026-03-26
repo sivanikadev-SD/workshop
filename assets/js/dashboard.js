@@ -118,6 +118,24 @@ const QuickActions = {
 };
 
 /* ══════════════════════════════════════
+   SIGNOUT FUNCTION
+══════════════════════════════════════ */
+const SignOut = {
+  init() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.Toast?.show('Successfully signed out.', 'success');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+      });
+    }
+  }
+};
+
+/* ══════════════════════════════════════
    INIT
 ══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -125,4 +143,5 @@ document.addEventListener('DOMContentLoaded', () => {
   DashSidebar.init();
   ProfileManager.init();
   QuickActions.init();
+  SignOut.init();
 });

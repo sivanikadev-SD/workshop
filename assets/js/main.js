@@ -455,3 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReservationFlow.init();
   NewsletterForm.init();
 });
+
+// Expose utilities to global window object
+window.Toast = Toast;
+window.FormValidator = FormValidator;
