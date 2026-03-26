@@ -372,22 +372,23 @@ p {
 }
 
 .badge-available {
-  background: #E8F5E9;
-  color: #2E7D32
+  color: #2E7D32;
+  display:inline;
 }
 
 .badge-reserved {
-  background: #FFF3E0;
-  color: #E65100
+
+  color: #E65100;
+  display: inline;
 }
 
 .badge-unavailable {
-  background: #FFEBEE;
-  color: #C62828
+
+  color: #C62828;
 }
 
 .badge-upcoming {
-  background: #E3F2FD;
+
   color: #0277BD
 }
 
