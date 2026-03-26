@@ -993,55 +993,66 @@
 <body>
 
   <!-- ═══════ FLOATING NAV ═══════ -->
-  <header>
-    <nav class="v2-nav" id="v2Nav" aria-label="Main navigation">
-      <a class="v2-nav-brand" href="index.html" aria-label="ToolShare home">
-        <div class="v2-nav-logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
-        <span class="v2-nav-name">ToolShare</span>
+<header role="banner">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <!-- Brand -->
+      <a class="navbar__brand" href="index.html" aria-label="ToolShare Home">
+        <div class="navbar__logo" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+        <div>
+          <div class="navbar__name">ToolShare</div>
+          <div class="navbar__tagline">Community Workshop</div>
+        </div>
       </a>
-      <ul class="v2-nav-links" role="list">
+      <!-- Desktop Links -->
+      <ul class="nav-links" role="list">
         <li class="dropdown">
-          <a href="#" class="active" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down"
-              style="font-size:0.75em;margin-left:4px;"></i></a>
+          <a href="#" class="active" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
           <ul class="dropdown-menu" aria-label="Home submenu">
             <li><a href="index.html">Home 1</a></li>
             <li><a href="index2.html" class="active">Home 2</a></li>
           </ul>
         </li>
-        <li><a href="pages/catalog.html">Catalog</a></li>
+        <li><a href="pages/catalog.html">Tool Catalog</a></li>
         <li><a href="pages/workshops.html">Workshops</a></li>
         <li><a href="pages/membership.html">Membership</a></li>
         <li><a href="pages/about.html">About</a></li>
         <li><a href="pages/contact.html">Contact</a></li>
       </ul>
-      <div class="v2-nav-ctrls">
+      <!-- Controls -->
+      <div class="nav-ctrls">
         <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
-          <i class="fa-solid fa-sun icon-sun" style="color:rgba(255,255,255,.8)" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
           <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
         </button>
         <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL layout">
           <i class="fa-solid fa-right-left" aria-hidden="true"></i>
         </button>
-        <a href="pages/login.html" class="btn btn-ghost btn-sm hd" style="color:rgba(255,255,255,.8)">Sign In</a>
-        <a href="dashboard/user.html" class="btn btn-primary btn-sm hd">Dashboard</a>
-        <button class="hamburger v2-mob-btn icon-btn" id="hamburger" aria-expanded="false" aria-controls="navDrawer"
-          aria-label="Open menu">
-          <i class="fa-solid fa-bars" style="color:rgba(255,255,255,.85)"></i>
+        <a href="pages/login.html" class="btn btn-ghost btn-sm hd">
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Sign In
+        </a>
+        <a href="dashboard/user.html" class="btn btn-primary hd">
+          <i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard
+        </a>
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
-    </nav>
-    <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
-      <a href="index.html"><i class="fa-solid fa-house"></i> Home 1</a>
-      <a href="index2.html" class="active"><i class="fa-solid fa-house"></i> Home 2</a>
-      <a href="pages/catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
-      <a href="pages/workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
-      <a href="pages/membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
-      <a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
-      <a href="pages/contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
-      <a href="pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
-      <a href="dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
     </div>
-  </header>
+  </nav>
+  <!-- Mobile Drawer -->
+  <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home 1</a>
+    <a href="index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="pages/catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+    <a href="pages/workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+    <a href="pages/membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+    <a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+    <a href="pages/contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+    <a href="dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+  </div>
+</header>
 
   <!-- ═══════ HERO ═══════ -->
   <main id="main-content">
