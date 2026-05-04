@@ -249,6 +249,7 @@ p {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--sp-2);
   padding: var(--sp-3) var(--sp-6);
   border-radius: var(--radius-md);
@@ -1741,6 +1742,27 @@ tr:hover td {
   .page-hero {
     padding: var(--sp-16) 0
   }
+}
+
+/* 360px and 1024px alignment fixes */
+@media(max-width:360px) {
+  .navbar__inner { padding: 0 var(--sp-2); gap: var(--sp-2); }
+  .navbar__brand { gap: var(--sp-2); }
+  .navbar__name { font-size: 1rem; }
+  .navbar__logo { width: 32px; height: 32px; font-size: .9rem; }
+}
+
+@media(min-width: 1201px) {
+  .nav-links { gap: var(--sp-4); }
+}
+
+@media(min-width: 1024px) and (max-width: 1200px) {
+  .nav-links { gap: var(--sp-2); }
+  .nav-links a { padding: var(--sp-2) var(--sp-2); font-size: 0.9rem; }
+  .navbar__inner { padding-inline: var(--sp-4); }
+  .navbar__tagline { display: none; }
+  .nav-ctrls { gap: var(--sp-1); }
+  .nav-ctrls .btn { padding: var(--sp-2) var(--sp-3); font-size: 0.85rem; }
 }
 
 @media(min-width:640px) and (max-width:1023px) {

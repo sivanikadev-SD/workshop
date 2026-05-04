@@ -51,16 +51,16 @@
       <!-- Desktop Links -->
       <ul class="nav-links" role="list">
         <li class="dropdown">
-          <a href="#" class="active" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
+          <a href="#" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down" style="font-size:0.75em;margin-left:4px;"></i></a>
           <ul class="dropdown-menu" aria-label="Home submenu">
-            <li><a href="index.html" class="active">Home 1</a></li>
+            <li><a href="index.html">Home 1</a></li>
             <li><a href="index2.html">Home 2</a></li>
           </ul>
         </li>
+        <li><a href="pages/about.html">About</a></li>
         <li><a href="pages/catalog.html">Tool Catalog</a></li>
         <li><a href="pages/workshops.html">Workshops</a></li>
         <li><a href="pages/membership.html">Membership</a></li>
-        <li><a href="pages/about.html">About</a></li>
         <li><a href="pages/contact.html">Contact</a></li>
       </ul>
       <!-- Controls -->
@@ -72,12 +72,8 @@
         <button class="icon-btn" id="rtlToggle" title="Switch to RTL" aria-label="Toggle RTL layout">
           <i class="fa-solid fa-right-left" aria-hidden="true"></i>
         </button>
-        <a href="pages/login.html" class="btn btn-ghost btn-sm hd">
-          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Sign In
-        </a>
-        <a href="dashboard/user.html" class="btn btn-primary hd">
-          <i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard
-        </a>
+        <a href="pages/login.html" class="btn btn-primary btn-sm hd"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>Sign In</a>
+        <a href="dashboard/user.html" class="btn btn-outline btn-sm hd"><i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard</a>
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
@@ -88,10 +84,10 @@
   <div class="nav-drawer" id="navDrawer" role="navigation" aria-label="Mobile navigation">
     <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home 1</a>
     <a href="index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+    <a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
     <a href="pages/catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
     <a href="pages/workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
     <a href="pages/membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
-    <a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
     <a href="pages/contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
     <a href="pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
     <a href="dashboard/user.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
@@ -293,7 +289,9 @@
           <h3 class="card__title">Intro to Woodworking</h3>
           <p class="card__meta"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> James K. · <i class="fa-solid fa-users" aria-hidden="true"></i> 8 spots left</p>
           <p style="font-size:.9rem;color:var(--color-text-muted);margin-bottom:var(--sp-4)">Learn joinery basics, safe saw use, and build a simple shelf to take home.</p>
-          <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          <div class="card__actions" style="justify-content:center">
+            <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          </div>
         </div>
       </article>
       <article class="card reveal">
@@ -304,7 +302,9 @@
           <h3 class="card__title">Home Plumbing Basics</h3>
           <p class="card__meta"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Maria S. · <i class="fa-solid fa-users" aria-hidden="true"></i> 12 spots left</p>
           <p style="font-size:.9rem;color:var(--color-text-muted);margin-bottom:var(--sp-4)">Fix leaks, replace fixtures, and understand your home's water system — no experience needed.</p>
-          <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          <div class="card__actions" style="justify-content:center">
+            <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          </div>
         </div>
       </article>
       <article class="card reveal">
@@ -315,7 +315,9 @@
           <h3 class="card__title">Basic Home Electrical</h3>
           <p class="card__meta"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> D. Reeves · <i class="fa-solid fa-users" aria-hidden="true"></i> 5 spots left</p>
           <p style="font-size:.9rem;color:var(--color-text-muted);margin-bottom:var(--sp-4)">Safely replace outlets, switches, and fixtures. Know when to call a pro.</p>
-          <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          <div class="card__actions" style="justify-content:center">
+            <a href="pages/workshops.html" class="btn btn-primary btn-sm">Book Spot</a>
+          </div>
         </div>
       </article>
     </div>

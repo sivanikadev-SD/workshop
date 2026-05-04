@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../assets/css/rtl.css"/>
   <link rel="stylesheet" href="../assets/css/dashboard.css"/>
 </head>
-<body>
+<body class="dashboard-page">
 
 <!-- ── Top Navbar ── -->
 <header>
@@ -41,10 +41,25 @@
             <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--color-accent)"></span>
           </button>
         </div>
+        <a href="#profile" class="user-nav-trigger" data-section-link="profile" style="margin-left:var(--sp-2)">
+          <img class="user-avatar-sm" src="https://i.pravatar.cc/32?img=12" alt="Profile" />
+        </a>
       </div>
     </div>
   </nav>
 </header>
+
+<div class="nav-drawer" id="navDrawer" role="navigation">
+  <a href="../index.html"><i class="fa-solid fa-house"></i> Home 1</a>
+  <a href="../index2.html"><i class="fa-solid fa-house"></i> Home 2</a>
+  <a href="../pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+  <a href="../pages/catalog.html"><i class="fa-solid fa-toolbox"></i> Tool Catalog</a>
+  <a href="../pages/workshops.html"><i class="fa-solid fa-calendar-days"></i> Workshops</a>
+  <a href="../pages/membership.html"><i class="fa-solid fa-id-card"></i> Membership</a>
+  <a href="../pages/contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+  <a href="../pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+  <a href="user.html" class="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+</div>
 
 <!-- ── Dashboard Layout ── -->
 <div class="dash-layout">

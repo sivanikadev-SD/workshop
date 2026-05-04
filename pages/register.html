@@ -88,9 +88,9 @@
       background: var(--color-bg); overflow-y: auto;
     }
     .auth-form-inner { width: 100%; max-width: 480px; }
-    .auth-form-header { margin-bottom: var(--sp-7); }
+    .auth-form-header { margin-bottom: var(--sp-8); text-align: center; }
     .auth-form-header h1 { font-size: 1.875rem; margin-bottom: var(--sp-2); }
-    .auth-form-header p { color: var(--color-text-muted); }
+    .auth-form-header p  { color: var(--color-text-muted); }
 
     /* Steps indicator */
     .step-indicator {
@@ -106,7 +106,10 @@
     .step-label { font-size: .8125rem; color: var(--color-text-muted); margin-left: var(--sp-2); }
 
     /* Social */
-    .auth-divider { display: flex; align-items: center; gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); color: var(--color-text-muted); font-size: .8125rem; }
+    .auth-divider {
+      display: flex; align-items: center; justify-content: center; gap: var(--sp-4);
+      margin: var(--sp-6) 0; color: var(--color-text-muted); font-size: .8125rem;
+    }
     .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
     .social-auth { display: flex; gap: var(--sp-3); margin-bottom: var(--sp-5); }
     .social-auth-btn {
@@ -187,6 +190,9 @@
       .auth-topbar { display: flex; }
       .auth-form-wrap { padding: var(--sp-8) var(--sp-6); }
     }
+    @media(max-width: 768px) {
+      .auth-topbar .btn { display: none; }
+    }
     @media(max-width: 479px) {
       .auth-form-wrap { padding: var(--sp-6) var(--sp-4); }
       .plan-selector { grid-template-columns: 1fr; }
@@ -251,21 +257,24 @@
         <span class="step-label" id="stepLabel" aria-live="polite">Step 1 of 3 — Your Info</span>
       </div>
 
-      <!-- Social Sign-Up -->
-      <div id="socialBtns">
-        <div class="social-auth" role="group" aria-label="Social sign-up options">
-          <button class="social-auth-btn" type="button" aria-label="Continue with Google">
-            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-              <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.25-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
-              <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/>
-              <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
-              <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
-            </svg>
-            Continue with Google
-          </button>
-        </div>
-        <div class="auth-divider" role="separator"><span>or register with email</span></div>
+      <!-- Social Login -->
+      <div class="social-auth" role="group" aria-label="Social sign-up options">
+        <button class="social-auth-btn" type="button" aria-label="Sign up with Google">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.25-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.909-2.259c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/>
+            <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
+            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+          </svg>
+          Google
+        </button>
+        <button class="social-auth-btn" type="button" aria-label="Sign up with Apple">
+          <i class="fa-brands fa-apple" style="font-size:1.1rem" aria-hidden="true"></i>
+          Apple
+        </button>
       </div>
+
+      <div class="auth-divider" role="separator"><span>or register with email</span></div>
 
       <!-- ── MULTI-STEP FORM ── -->
       <form id="registerForm" data-validate action="#" method="POST" aria-label="Create account form" novalidate>
