@@ -41,9 +41,15 @@
             <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--color-accent)"></span>
           </button>
         </div>
-        <a href="#profile" class="user-nav-trigger" data-section-link="profile" style="margin-left:var(--sp-2)">
-          <img class="user-avatar-sm" src="https://i.pravatar.cc/32?img=12" alt="Profile" />
-        </a>
+        <div class="user-profile-top">
+          <div class="user-info-text">
+            <span class="user-name">Jane Smith</span>
+            <span class="user-role">Standard Member</span>
+          </div>
+          <a href="#profile" class="user-nav-trigger" data-section-link="profile">
+            <img class="user-avatar-sm" src="https://i.pravatar.cc/32?img=12" alt="Profile" />
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -65,12 +71,6 @@
 <div class="dash-layout">
   <!-- ── Sidebar ── -->
   <aside class="dash-sidebar" id="dashSidebar" aria-label="Member navigation">
-    <div class="dash-sidebar-brand">
-      <img class="user-avatar" src="https://i.pravatar.cc/48?img=12" alt="Jane Smith's avatar"/>
-      <div class="user-name">Jane Smith</div>
-      <span class="user-badge"><i class="fa-solid fa-star"></i> Standard Member</span>
-      <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-top:var(--sp-2)">MBR-2024-00842</div>
-    </div>
 
     <div class="dash-nav-section"><span class="dash-nav-section-label">Main</span></div>
     <a href="#overview" class="dash-nav-item active" data-section="overview"><i class="fa-solid fa-gauge"></i> Overview</a>
